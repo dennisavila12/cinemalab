@@ -5,6 +5,7 @@ import { useReloj } from '../../hooks/useReloj';
 import { callar, narrar, vozDisponible } from '../../lib/voz';
 import { Formula } from '../comunes/Formula';
 import { Significados } from '../comunes/Significados';
+import { descripcionDe } from '../../lib/descripciones';
 import { IconoVoz } from '../comunes/Iconos';
 import { Grafica } from '../graficas/Grafica';
 import { cursorEn, definirGrafica } from '../graficas/defs';
@@ -129,6 +130,7 @@ export function ModoClase({ modelo, peticion }: { modelo: Modelo; peticion?: Pet
             <div className="clase-formulas">
               {escena.formulas.map((f, k) => (
                 <div key={f} className="clase-formula" style={{ animationDelay: `${150 + k * 220}ms` }}>
+                  {descripcionDe(f) && <p className="que-es">{descripcionDe(f)!.nombre}</p>}
                   <Formula tex={f} bloque />
                   <Significados tex={f} variables={modelo.variables} />
                 </div>

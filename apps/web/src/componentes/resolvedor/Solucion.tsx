@@ -3,6 +3,7 @@ import type { Modelo, Solucion as TSolucion } from '@cinemalab/contratos';
 import { fmt } from '../../lib/formato';
 import { Formula } from '../comunes/Formula';
 import { Significados } from '../comunes/Significados';
+import { descripcionDe } from '../../lib/descripciones';
 
 const unidadTex = (u: string) => (u === '°' ? '^\\circ' : `\\ \\text{${u.replace('²', '}^2\\text{')}}`);
 
@@ -68,6 +69,9 @@ export function Solucion({ modelo, solucion, enunciado }: { modelo: Modelo; solu
                 Calculamos {p.etiqueta.toLowerCase()} <Formula tex={`(${p.simbolo})`} />
               </h5>
               <div className="renglones">
+                {descripcionDe(p.ecuacion) && (
+                  <p className="que-es"><b>{descripcionDe(p.ecuacion)!.nombre}.</b> {descripcionDe(p.ecuacion)!.para}</p>
+                )}
                 <p className="renglon"><span className="lbl">Fórmula</span><Formula tex={p.ecuacion} /></p>
                 <Significados tex={p.ecuacion} variables={modelo.variables} className="en-hoja" />
                 {p.despeje && <p className="renglon"><span className="lbl">Despejando</span><Formula tex={p.despeje} /></p>}

@@ -335,3 +335,12 @@ h1, h2, h3, h4 { margin: 0; line-height: 1.25; }
 .clase-formula .significados { justify-content: flex-start; margin-top: 2px; }
 .formula-juego .significados { margin: 0 0 6px; }
 @media (max-width: 600px) { .hoja .significados.en-hoja { margin-left: 0; } .significados .significado { white-space: normal; } }
+
+/* «¿Qué es esta fórmula?» */
+.que-es { margin: 0 0 4px; font-size: 14px; line-height: 1.45; color: var(--texto, #414b5e); }
+.que-es b { color: var(--azul, #1d3a8a); }
+.hoja .que-es { font-family: var(--mano); font-size: 16px; color: #3a4459; margin: 0 0 6px; }
+.hoja .que-es b { color: var(--tinta-azul); }
+.ecuaciones .ec-nombre { font-size: 13.5px; color: var(--azul, #1d3a8a); }
+.ecuaciones .ec-para { font-size: 13px; line-height: 1.45; color: var(--suave, #5b6476); }
+.clase-formula .que-es { font-family: var(--mano); font-weight: 700; font-size: 16px; color: var(--tinta-azul, #1d3a8a); margin: 2px 0 0; }
