@@ -1,0 +1,8 @@
+node_modules/
+dist/
+target/
+*.node
+.vite/
+coverage/
+dist-demo/
+*.node.tmp

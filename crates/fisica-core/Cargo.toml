@@ -1,0 +1,10 @@
+[package]
+name = "fisica-core"
+description = "Motor de cinemática: modelos, resolución paso a paso, simulación, lecciones y juego"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

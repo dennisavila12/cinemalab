@@ -1,0 +1,24 @@
+{
+  "name": "cinemalab",
+  "version": "2.0.0",
+  "private": true,
+  "description": "CinemaLab: resolvedor, Modo clase y juego de cinemática. Motor en Rust, API en Node.js y web en React.",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build:nativo": "node scripts/compilar-nativo.mjs",
+    "build": "pnpm build:nativo && pnpm -r --filter ./packages/** build && pnpm --filter @cinemalab/web build && pnpm --filter @cinemalab/api build",
+    "dev": "pnpm build:nativo && pnpm --parallel --filter @cinemalab/api --filter @cinemalab/web dev",
+    "start": "pnpm --filter @cinemalab/api start",
+    "test": "cargo test -p fisica-core && pnpm build:nativo && pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "build:demo": "pnpm build:nativo && node scripts/generar-datos-demo.mjs && pnpm --filter @cinemalab/web build:demo"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

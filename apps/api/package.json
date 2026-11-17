@@ -1,0 +1,28 @@
+{
+  "name": "@cinemalab/api",
+  "version": "2.0.0",
+  "private": true,
+  "description": "API REST (Fastify) que expone el motor de física en Rust",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/servidor.ts",
+    "build": "tsup src/servidor.ts --format esm --target node20 --clean --external @cinemalab/fisica-node",
+    "start": "node dist/servidor.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "@cinemalab/contratos": "workspace:*",
+    "@cinemalab/fisica-node": "workspace:*",
+    "@fastify/static": "^8.0.0",
+    "fastify": "^5.2.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}

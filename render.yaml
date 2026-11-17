@@ -1,0 +1,7 @@
+# Publicación en Render (https://render.com) con el Dockerfile
+services:
+  - type: web
+    name: cinemalab
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/salud
