@@ -1,6 +1,7 @@
 import type { Bloque, ResultadoTiro, Sugerencia } from '@cinemalab/contratos';
 import { fmt } from '../../lib/formato';
 import { Formula } from '../comunes/Formula';
+import { Significados } from '../comunes/Significados';
 
 function Bloques({ bloques }: { bloques: Bloque[] }) {
   return (
@@ -9,7 +10,7 @@ function Bloques({ bloques }: { bloques: Bloque[] }) {
         <li key={b.titulo}>
           <h4>{b.titulo}</h4>
           {b.texto && <p>{b.texto}</p>}
-          {b.formulas.map((f) => <div key={f} className="formula-juego"><Formula tex={f} bloque /></div>)}
+          {b.formulas.map((f) => <div key={f} className="formula-juego"><Formula tex={f} bloque /><Significados tex={f} /></div>)}
         </li>
       ))}
     </ol>

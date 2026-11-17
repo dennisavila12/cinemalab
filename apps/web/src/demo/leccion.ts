@@ -45,28 +45,28 @@ function leccionMru(v: Valores, mov: Movimiento, sol: Solucion): Escena[] {
         'Esa es la huella del MRU: distancias iguales en tiempos iguales.',
       ], [], ['estrobo', 'regla', 'vectores'], 0, mov.t_max, null),
       datos: [
-        { etiqueta: 'Intervalo entre marcas', valor: `\\Delta t = ${num(dt)}\\ \\text{s}` },
-        { etiqueta: 'Distancia entre marcas', valor: `v\\,\\Delta t = ${num(vel * dt)}\\ \\text{m}` },
+        { etiqueta: 'Intervalo entre marcas', valor: `t = ${num(dt)}\\ \\text{s}` },
+        { etiqueta: 'Distancia entre marcas', valor: `v\\,t = ${num(vel * dt)}\\ \\text{m}` },
       ],
     },
     escena('La ecuación del MRU', ['Si en cada segundo avanza lo mismo, la distancia total es la velocidad por el tiempo.'], [
-      '\\Delta x = v\\,t', 'x(t) = x_0 + v\\,t', `\\Delta x = ${num(vel)}\\cdot ${num(t)} = ${num(dx)}\\ \\text{m}`,
+      'd = v\\,t', 'x(t) = x_0 + v\\,t', `d = ${num(vel)}\\cdot ${num(t)} = ${num(dx)}\\ \\text{m}`,
     ], ['estrobo'], 0, mov.t_max, null),
     escena('La gráfica x–t es una recta', [
       'La posición crece al mismo ritmo todo el tiempo; por eso la gráfica posición contra tiempo es una línea recta.',
       `Su pendiente es la velocidad: ${txt(vel)} metros por segundo.`,
-    ], ['\\text{pendiente} = \\dfrac{\\Delta x}{\\Delta t} = v'], ['estrobo'], 0, mov.t_max, 'x'),
+    ], ['\\text{pendiente} = \\dfrac{d}{t} = v'], ['estrobo'], 0, mov.t_max, 'x'),
     escena('La gráfica v–t es horizontal', [
       'La velocidad no cambia, así que su gráfica es una línea horizontal.',
-      `El área del rectángulo bajo esa línea es el desplazamiento: ${txt(vel)} por ${txt(t)} da ${txt(dx)} metros.`,
-    ], [`\\text{Área} = v\\,t = ${num(vel)}\\cdot ${num(t)} = ${num(dx)}\\ \\text{m} = \\Delta x`], ['vectores'], 0, mov.t_max, 'v_area'),
+      `El área del rectángulo bajo esa línea es la distancia recorrida: ${txt(vel)} por ${txt(t)} da ${txt(dx)} metros.`,
+    ], [`\\text{Área} = v\\,t = ${num(vel)}\\cdot ${num(t)} = ${num(dx)}\\ \\text{m} = d`], ['vectores'], 0, mov.t_max, 'v_area'),
   ];
   e.push(...escenasDePasos(sol, mov, ['estrobo', 'vectores']));
   e.push(escena('Resumen', [
     'En el MRU la velocidad es constante y la aceleración es cero.',
     'Recorre distancias iguales en tiempos iguales.',
     'La gráfica posición–tiempo es una recta con pendiente v y la gráfica velocidad–tiempo es horizontal.',
-  ], ['\\Delta x = v\\,t', 'a = 0'], ['estrobo', 'vectores'], 0, mov.t_max, 'x'));
+  ], ['d = v\\,t', 'a = 0'], ['estrobo', 'vectores'], 0, mov.t_max, 'x'));
   return e;
 }
 
@@ -91,20 +91,20 @@ function leccionMrua(v: Valores, mov: Movimiento, sol: Solucion): Escena[] {
     ], ['v = v_0 + a\\,t', `v = ${num(v0)} + ${par(a)}\\,t`], ['vectores'], 0, mov.t_max, 'v'),
     escena('La posición forma una parábola', [
       'Como la velocidad cambia, la posición ya no crece al mismo ritmo: la gráfica posición contra tiempo es una curva, una parábola.',
-    ], ['\\Delta x = v_0\\,t + \\tfrac{1}{2}\\,a\\,t^2'], ['estrobo'], 0, mov.t_max, 'x'),
-    escena('El área bajo v–t es el desplazamiento', [
+    ], ['d = v_0\\,t + \\tfrac{1}{2}\\,a\\,t^2'], ['estrobo'], 0, mov.t_max, 'x'),
+    escena('El área bajo v–t es la distancia', [
       'El área bajo la recta de la velocidad es un trapecio.',
-      `Su área es el promedio de la velocidad inicial y la final, por el tiempo: da ${txt(dx)} metros, que es el desplazamiento.`,
-    ], ['\\Delta x = \\tfrac{1}{2}\\,(v_0 + v)\\,t', `\\Delta x = \\tfrac{1}{2}\\,(${num(v0)} + ${num(vf)})\\cdot ${num(t)} = ${num(dx)}\\ \\text{m}`], ['vectores'], 0, mov.t_max, 'v_area'),
+      `Su área es el promedio de la velocidad inicial y la final, por el tiempo: da ${txt(dx)} metros, que es la distancia recorrida.`,
+    ], ['d = \\tfrac{1}{2}\\,(v_0 + v)\\,t', `d = \\tfrac{1}{2}\\,(${num(v0)} + ${num(vf)})\\cdot ${num(t)} = ${num(dx)}\\ \\text{m}`], ['vectores'], 0, mov.t_max, 'v_area'),
     escena('Las cuatro ecuaciones y cuál usar', [
-      'Hay cinco variables: desplazamiento, velocidad inicial, velocidad final, aceleración y tiempo.',
+      'Hay cinco variables: distancia, velocidad inicial, velocidad final, aceleración y tiempo.',
       'Cada ecuación deja fuera una de ellas.',
       'El truco es buscar la variable que ni te dan ni te piden, y usar la ecuación que no la tiene.',
     ], [
-      'v = v_0 + a\\,t \\qquad (\\text{no tiene } \\Delta x)',
-      '\\Delta x = v_0\\,t + \\tfrac{1}{2}a\\,t^2 \\qquad (\\text{no tiene } v)',
-      'v^2 = v_0^2 + 2\\,a\\,\\Delta x \\qquad (\\text{no tiene } t)',
-      '\\Delta x = \\tfrac{1}{2}(v_0 + v)\\,t \\qquad (\\text{no tiene } a)',
+      'v = v_0 + a\\,t \\qquad (\\text{no tiene } d)',
+      'd = v_0\\,t + \\tfrac{1}{2}a\\,t^2 \\qquad (\\text{no tiene } v)',
+      'v^2 = v_0^2 + 2\\,a\\,d \\qquad (\\text{no tiene } t)',
+      'd = \\tfrac{1}{2}(v_0 + v)\\,t \\qquad (\\text{no tiene } a)',
     ], [], 0, 0, null),
   ];
   for (const ev of eventos(mov)) {
@@ -118,7 +118,7 @@ function leccionMrua(v: Valores, mov: Movimiento, sol: Solucion): Escena[] {
     'En el MRUA la aceleración es constante y la velocidad cambia lo mismo cada segundo.',
     'La gráfica velocidad–tiempo es una recta con pendiente a y la de posición es una parábola.',
     'Para resolver, elegí la ecuación que no tiene la variable que ni te dan ni te piden.',
-  ], ['v = v_0 + a\\,t', '\\Delta x = v_0\\,t + \\tfrac{1}{2}a\\,t^2', 'v^2 = v_0^2 + 2a\\,\\Delta x'], ['estrobo', 'vectores'], 0, mov.t_max, 'v'));
+  ], ['v = v_0 + a\\,t', 'd = v_0\\,t + \\tfrac{1}{2}a\\,t^2', 'v^2 = v_0^2 + 2a\\,d'], ['estrobo', 'vectores'], 0, mov.t_max, 'v'));
   return e;
 }
 

@@ -132,8 +132,8 @@ fn leccion_mru(v: &Valores, mov: &Movimiento, sol: &Solucion) -> Vec<Escena> {
         ], vec![], vec!["vectores"], 0.0, mov.t_max, None),
         Escena {
             datos: vec![
-                Dato { etiqueta: "Intervalo entre marcas".into(), valor: format!("\\Delta t = {}\\ \\text{{s}}", num(dt)) },
-                Dato { etiqueta: "Distancia entre marcas".into(), valor: format!("v\\,\\Delta t = {}\\ \\text{{m}}", num(vel * dt)) },
+                Dato { etiqueta: "Intervalo entre marcas".into(), valor: format!("t = {}\\ \\text{{s}}", num(dt)) },
+                Dato { etiqueta: "Distancia entre marcas".into(), valor: format!("v\\,t = {}\\ \\text{{m}}", num(vel * dt)) },
             ],
             ..escena("Distancias iguales en tiempos iguales", vec![
                 format!("Cada marca se toma cada {} segundos.", txt(dt)),
@@ -144,25 +144,25 @@ fn leccion_mru(v: &Valores, mov: &Movimiento, sol: &Solucion) -> Vec<Escena> {
         escena("La ecuación del MRU", vec![
             "Si en cada segundo avanza lo mismo, la distancia total es la velocidad por el tiempo.".into(),
         ], vec![
-            "\\Delta x = v\\,t".into(),
+            "d = v\\,t".into(),
             "x(t) = x_0 + v\\,t".into(),
-            format!("\\Delta x = {}\\cdot {} = {}\\ \\text{{m}}", num(vel), num(t), num(dx)),
+            format!("d = {}\\cdot {} = {}\\ \\text{{m}}", num(vel), num(t), num(dx)),
         ], vec!["estrobo"], 0.0, mov.t_max, None),
         escena("La gráfica x–t es una recta", vec![
             "La posición crece al mismo ritmo todo el tiempo; por eso la gráfica posición contra tiempo es una línea recta.".into(),
             format!("Su pendiente es la velocidad: {} metros por segundo.", txt(vel)),
-        ], vec!["\\text{pendiente} = \\dfrac{\\Delta x}{\\Delta t} = v".into()], vec!["estrobo"], 0.0, mov.t_max, Some("x")),
+        ], vec!["\\text{pendiente} = \\dfrac{d}{t} = v".into()], vec!["estrobo"], 0.0, mov.t_max, Some("x")),
         escena("La gráfica v–t es horizontal", vec![
             "La velocidad no cambia, así que su gráfica es una línea horizontal.".into(),
-            format!("El área del rectángulo bajo esa línea es el desplazamiento: {} por {} da {} metros.", txt(vel), txt(t), txt(dx)),
-        ], vec![format!("\\text{{Área}} = v\\,t = {}\\cdot {} = {}\\ \\text{{m}} = \\Delta x", num(vel), num(t), num(dx))], vec!["vectores"], 0.0, mov.t_max, Some("v_area")),
+            format!("El área del rectángulo bajo esa línea es la distancia recorrida: {} por {} da {} metros.", txt(vel), txt(t), txt(dx)),
+        ], vec![format!("\\text{{Área}} = v\\,t = {}\\cdot {} = {}\\ \\text{{m}} = d", num(vel), num(t), num(dx))], vec!["vectores"], 0.0, mov.t_max, Some("v_area")),
     ];
     e.extend(escenas_de_pasos(sol, mov, vec!["estrobo", "vectores"]));
     e.push(escena("Resumen", vec![
         "En el MRU la velocidad es constante y la aceleración es cero.".into(),
         "Recorre distancias iguales en tiempos iguales.".into(),
         "La gráfica posición–tiempo es una recta con pendiente v y la gráfica velocidad–tiempo es horizontal.".into(),
-    ], vec!["\\Delta x = v\\,t".into(), "a = 0".into()], vec!["estrobo", "vectores"], 0.0, mov.t_max, Some("x")));
+    ], vec!["d = v\\,t".into(), "a = 0".into()], vec!["estrobo", "vectores"], 0.0, mov.t_max, Some("x")));
     e
 }
 
@@ -192,23 +192,23 @@ fn leccion_mrua(v: &Valores, mov: &Movimiento, sol: &Solucion) -> Vec<Escena> {
         ], vec!["vectores"], 0.0, mov.t_max, Some("v")),
         escena("La posición forma una parábola", vec![
             "Como la velocidad cambia, la posición ya no crece al mismo ritmo: la gráfica posición contra tiempo es una curva, una parábola.".into(),
-        ], vec!["\\Delta x = v_0\\,t + \\tfrac{1}{2}\\,a\\,t^2".into()], vec!["estrobo"], 0.0, mov.t_max, Some("x")),
-        escena("El área bajo v–t es el desplazamiento", vec![
+        ], vec!["d = v_0\\,t + \\tfrac{1}{2}\\,a\\,t^2".into()], vec!["estrobo"], 0.0, mov.t_max, Some("x")),
+        escena("El área bajo v–t es la distancia", vec![
             "El área bajo la recta de la velocidad es un trapecio.".into(),
-            format!("Su área es el promedio de la velocidad inicial y la final, por el tiempo: da {} metros, que es el desplazamiento.", txt(dx)),
+            format!("Su área es el promedio de la velocidad inicial y la final, por el tiempo: da {} metros, que es la distancia recorrida.", txt(dx)),
         ], vec![
-            "\\Delta x = \\tfrac{1}{2}\\,(v_0 + v)\\,t".into(),
-            format!("\\Delta x = \\tfrac{{1}}{{2}}\\,({} + {})\\cdot {} = {}\\ \\text{{m}}", num(v0), num(vf), num(t), num(dx)),
+            "d = \\tfrac{1}{2}\\,(v_0 + v)\\,t".into(),
+            format!("d = \\tfrac{{1}}{{2}}\\,({} + {})\\cdot {} = {}\\ \\text{{m}}", num(v0), num(vf), num(t), num(dx)),
         ], vec!["vectores"], 0.0, mov.t_max, Some("v_area")),
         escena("Las cuatro ecuaciones y cuál usar", vec![
-            "Hay cinco variables: desplazamiento, velocidad inicial, velocidad final, aceleración y tiempo.".into(),
+            "Hay cinco variables: distancia, velocidad inicial, velocidad final, aceleración y tiempo.".into(),
             "Cada ecuación deja fuera una de ellas.".into(),
             "El truco es buscar la variable que ni te dan ni te piden, y usar la ecuación que no la tiene.".into(),
         ], vec![
-            "v = v_0 + a\\,t \\qquad (\\text{no tiene } \\Delta x)".into(),
-            "\\Delta x = v_0\\,t + \\tfrac{1}{2}a\\,t^2 \\qquad (\\text{no tiene } v)".into(),
-            "v^2 = v_0^2 + 2\\,a\\,\\Delta x \\qquad (\\text{no tiene } t)".into(),
-            "\\Delta x = \\tfrac{1}{2}(v_0 + v)\\,t \\qquad (\\text{no tiene } a)".into(),
+            "v = v_0 + a\\,t \\qquad (\\text{no tiene } d)".into(),
+            "d = v_0\\,t + \\tfrac{1}{2}a\\,t^2 \\qquad (\\text{no tiene } v)".into(),
+            "v^2 = v_0^2 + 2\\,a\\,d \\qquad (\\text{no tiene } t)".into(),
+            "d = \\tfrac{1}{2}(v_0 + v)\\,t \\qquad (\\text{no tiene } a)".into(),
         ], vec![], 0.0, 0.0, None),
     ];
     for ev in mov.eventos() {
@@ -236,7 +236,7 @@ fn leccion_mrua(v: &Valores, mov: &Movimiento, sol: &Solucion) -> Vec<Escena> {
         "En el MRUA la aceleración es constante y la velocidad cambia lo mismo cada segundo.".into(),
         "La gráfica velocidad–tiempo es una recta con pendiente a y la de posición es una parábola.".into(),
         "Para resolver, elegí la ecuación que no tiene la variable que ni te dan ni te piden.".into(),
-    ], vec!["v = v_0 + a\\,t".into(), "\\Delta x = v_0\\,t + \\tfrac{1}{2}a\\,t^2".into(), "v^2 = v_0^2 + 2a\\,\\Delta x".into()], vec!["estrobo", "vectores"], 0.0, mov.t_max, Some("v")));
+    ], vec!["v = v_0 + a\\,t".into(), "d = v_0\\,t + \\tfrac{1}{2}a\\,t^2".into(), "v^2 = v_0^2 + 2a\\,d".into()], vec!["estrobo", "vectores"], 0.0, mov.t_max, Some("v")));
     e
 }
 

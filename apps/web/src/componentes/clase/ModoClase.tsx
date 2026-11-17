@@ -4,6 +4,7 @@ import { api } from '../../api/cliente';
 import { useReloj } from '../../hooks/useReloj';
 import { callar, narrar, vozDisponible } from '../../lib/voz';
 import { Formula } from '../comunes/Formula';
+import { Significados } from '../comunes/Significados';
 import { IconoVoz } from '../comunes/Iconos';
 import { Grafica } from '../graficas/Grafica';
 import { cursorEn, definirGrafica } from '../graficas/defs';
@@ -129,6 +130,7 @@ export function ModoClase({ modelo, peticion }: { modelo: Modelo; peticion?: Pet
               {escena.formulas.map((f, k) => (
                 <div key={f} className="clase-formula" style={{ animationDelay: `${150 + k * 220}ms` }}>
                   <Formula tex={f} bloque />
+                  <Significados tex={f} variables={modelo.variables} />
                 </div>
               ))}
             </div>

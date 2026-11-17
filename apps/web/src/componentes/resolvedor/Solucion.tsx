@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Modelo, Solucion as TSolucion } from '@cinemalab/contratos';
 import { fmt } from '../../lib/formato';
 import { Formula } from '../comunes/Formula';
+import { Significados } from '../comunes/Significados';
 
 const unidadTex = (u: string) => (u === '°' ? '^\\circ' : `\\ \\text{${u.replace('²', '}^2\\text{')}}`);
 
@@ -68,6 +69,7 @@ export function Solucion({ modelo, solucion, enunciado }: { modelo: Modelo; solu
               </h5>
               <div className="renglones">
                 <p className="renglon"><span className="lbl">Fórmula</span><Formula tex={p.ecuacion} /></p>
+                <Significados tex={p.ecuacion} variables={modelo.variables} className="en-hoja" />
                 {p.despeje && <p className="renglon"><span className="lbl">Despejando</span><Formula tex={p.despeje} /></p>}
                 <p className="renglon"><span className="lbl">Sustituyendo</span><Formula tex={p.sustitucion} /></p>
                 <p className="renglon"><span className="lbl" aria-hidden="true" /><span className="caja"><Formula tex={p.resultado} /></span></p>

@@ -34,8 +34,8 @@
     <p class="sub entra" style="--i:2">Aplicación web para resolver, simular y aprender MRU, MRUA y tiro parabólico: paso a paso como en el cuaderno, con animaciones y un juego de hondilla.</p>
   </div>
   <div style="position:absolute; left:128px; top:800px; display:flex; flex-direction:column; gap:4px;">
-    <p class="dato entra" style="--i:3">[Integrante 1 · carnet] · [Integrante 2 · carnet] · Dennis Ávila · AF23013</p>
-    <p class="dato entra" style="--i:4">Docente: [nombre del docente] · Grupo [__] · Noviembre 2026</p>
+    <p class="dato entra" style="--i:3">[Integrante 1 · carnet] · [Integrante 2 · carnet] · Dennis Avila · AF23013</p>
+    <p class="dato entra" style="--i:4">Docente: Ing. Gerson Menjívar · Grupo [__] · Noviembre 2026</p>
   </div>
   <aside class="notas">(30 segundos) Buenos días. Somos [equipo]. Les vamos a presentar CinemaLab, la aplicación web que desarrollamos para Mecánica Clásica. Es una herramienta interactiva para estudiar el movimiento: resuelve ejercicios de MRU, MRUA y tiro parabólico paso a paso, los simula con animaciones y gráficas, los explica en un modo clase y tiene un juego de hondilla. En los próximos minutos les contamos qué busca resolver, cómo está construida, cómo funciona y cómo la probamos.</aside>
 </section>
@@ -84,35 +84,46 @@
   <aside class="notas">(1 minuto) La aplicación contempla tres modelos de cinemática ideal, organizados como en clase: en una dimensión el MRU y el MRUA, y en dos dimensiones el tiro parabólico. No metimos caída libre ni tiro vertical aparte porque son casos del MRUA. Todos los ejemplos son de aquí: un microbús, un pick-up frenando, una piedra desde el Cerro Verde. Y para cada movimiento la aplicación tiene cuatro herramientas: resolver ejercicios, la simulación con gráficas, un modo clase que explica el tema, y en el parabólico el juego de la hondilla.</aside>
 </section>
 
-<!-- 4 · FUNDAMENTO -->
-<section class="lamina hoja" data-titulo="03 · Fundamento físico" data-tiempo="75">
+<!-- 4 · FUNDAMENTO (MRU y MRUA) -->
+<section class="lamina hoja" data-titulo="03 · Fundamento: MRU y MRUA" data-tiempo="75">
   <p class="ojo">03 · Fundamento físico</p>
-  <h2 class="titulo">Modelos matemáticos del motor</h2>
-  <p class="bajada">Unidades del SI · g = 9.81 m/s² · x positivo a la derecha, y positivo hacia arriba · sin resistencia del aire</p>
-  <div style="display:flex; flex-direction:column; gap:30px; margin-top:40px;">
-    <div class="paso" style="display:flex; align-items:center; gap:44px;">
-      <p class="mano" style="width:260px; font-size:46px; font-weight:700; color:var(--tinta); margin:0;">MRU</p>
-      <img src="img/mru1.png" alt="x = x0 + v t" style="height:76px;">
-      <img src="img/mru2.png" alt="v = Δx / Δt" style="height:115px;">
+  <h2 class="titulo">Fórmulas de MRU y MRUA</h2>
+  <p class="bajada">Son las mismas que usa la aplicación. Unidades del SI.</p>
+  <div style="display:flex; flex-direction:column; gap:30px; margin-top:38px;">
+    <div class="paso" style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; align-items:center; gap:44px;"><p class="mano" style="width:250px; font-size:44px; font-weight:700; color:var(--tinta); margin:0;">MRU</p><img src="img/f_mru.png" alt="d = v t" style="height:70px;"></div>
+      <p style="margin:0 0 0 294px; font-size:24px; line-height:1.4; color:var(--suave);"><i>donde</i> <b>d</b> = distancia (m) · <b>v</b> = velocidad (m/s) · <b>t</b> = tiempo (s)</p>
     </div>
-    <div class="paso" style="display:flex; align-items:center; gap:44px;">
-      <p class="mano" style="width:260px; font-size:46px; font-weight:700; color:var(--tinta); margin:0;">MRUA</p>
-      <img src="img/mrua1.png" alt="v = v0 + a t" style="height:76px;">
-      <img src="img/mrua2.png" alt="x = x0 + v0 t + ½ a t²" style="height:76px;">
-      <img src="img/mrua3.png" alt="v² = v0² + 2 a Δx" style="height:76px;">
+    <div class="paso" style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; align-items:center; gap:44px;"><p class="mano" style="width:250px; font-size:44px; font-weight:700; color:var(--tinta); margin:0;">MRUA</p><img src="img/f_mrua1.png" alt="v = v0 + a t" style="height:70px;"><img src="img/f_mrua2.png" alt="d = v0 t + ½ a t²" style="height:70px;"></div>
+      <p style="margin:0 0 0 294px; font-size:24px; line-height:1.4; color:var(--suave);"><i>donde</i> <b>v</b> = velocidad final (m/s) · <b>v₀</b> = velocidad inicial (m/s) · <b>a</b> = aceleración (m/s²) · <b>t</b> = tiempo (s) · <b>d</b> = distancia (m)</p>
     </div>
-    <div class="paso" style="display:flex; align-items:flex-start; gap:44px;">
-      <p class="mano" style="width:260px; font-size:46px; font-weight:700; color:var(--tinta); margin:0; padding-top:22px;">Parabólico</p>
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <div style="display:flex; align-items:center; gap:48px;">
-          <img src="img/par1.png" alt="v0x = v0 cos θ, v0y = v0 sen θ" style="height:76px;">
-          <img src="img/par3.png" alt="h máx = h0 + v0y² / 2g" style="height:136px;">
-        </div>
-        <img src="img/par2.png" alt="x = v0x t, y = h0 + v0y t − ½ g t²" style="height:76px; align-self:flex-start;">
-      </div>
+    <div class="paso" style="display:flex; align-items:center; gap:44px; margin-left:294px;"><img src="img/f_mrua3.png" alt="v² = v0² + 2 a d" style="height:70px;"><img src="img/f_mrua4.png" alt="d = ½ (v0 + v) t" style="height:70px;"></div>
+  </div>
+  <p class="nota-mano paso" style="margin-top:30px;">Si la aceleración sale negativa, el objeto va frenando.</p>
+  <aside class="notas">(1 minuto) Estas son las fórmulas que la aplicación tiene programadas, las mismas de clase. En MRU la velocidad es constante, así que la distancia es velocidad por tiempo. En MRUA la velocidad cambia parejo: usamos velocidad final igual a velocidad inicial más aceleración por tiempo, la de la distancia con un medio de a t cuadrado, la de velocidad al cuadrado que sirve cuando no nos dan el tiempo, y la del promedio de velocidades. Debajo de cada fórmula está qué significa cada letra. Si la aceleración sale negativa, el objeto va frenando.</aside>
+</section>
+
+<!-- 5 · FUNDAMENTO (PARABÓLICO) -->
+<section class="lamina hoja" data-titulo="03 · Fundamento: tiro parabólico" data-tiempo="75">
+  <p class="ojo">03 · Fundamento físico</p>
+  <h2 class="titulo">Tiro parabólico: dos movimientos a la vez</h2>
+  <p class="bajada">En x es un MRU y en y es un MRUA con a = −g · g = 9.81 m/s² · sin resistencia del aire</p>
+  <div style="display:flex; flex-direction:column; gap:26px; margin-top:34px;">
+    <div class="paso" style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; align-items:center; gap:44px;"><p class="mano" style="width:250px; font-size:44px; font-weight:700; color:var(--tinta); margin:0;">Descomponer</p><img src="img/f_p1.png" alt="v0x = v0 cos θ" style="height:70px;"><img src="img/f_p2.png" alt="v0y = v0 sen θ" style="height:70px;"></div>
+      <p style="margin:0 0 0 294px; font-size:24px; line-height:1.4; color:var(--suave);"><i>donde</i> <b>v₀</b> = velocidad inicial (m/s) · <b>θ</b> = ángulo de lanzamiento · <b>v₀ₓ</b>, <b>v₀ᵧ</b> = componentes horizontal y vertical</p>
+    </div>
+    <div class="paso" style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; align-items:center; gap:44px;"><p class="mano" style="width:250px; font-size:44px; font-weight:700; color:var(--tinta); margin:0;">Subida</p><img src="img/f_p3.png" alt="ts = v0y / g" style="height:104px;"><img src="img/f_p4.png" alt="hmax = h0 + v0y² / 2g" style="height:126px;"></div>
+      <p style="margin:0 0 0 294px; font-size:24px; line-height:1.4; color:var(--suave);"><i>donde</i> <b>tₛ</b> = tiempo de subida (s) · <b>hₘₐₓ</b> = altura máxima (m) · <b>h₀</b> = altura inicial (m) · <b>g</b> = gravedad</p>
+    </div>
+    <div class="paso" style="display:flex; flex-direction:column; gap:8px;">
+      <div style="display:flex; align-items:center; gap:44px;"><p class="mano" style="width:250px; font-size:44px; font-weight:700; color:var(--tinta); margin:0;">Vuelo</p><img src="img/f_p5.png" alt="h0 + v0y tv − ½ g tv² = 0" style="height:70px;"><img src="img/f_p6.png" alt="R = v0x tv" style="height:70px;"></div>
+      <p style="margin:0 0 0 294px; font-size:24px; line-height:1.4; color:var(--suave);"><i>donde</i> <b>tᵥ</b> = tiempo de vuelo (s) · <b>R</b> = alcance horizontal (m)</p>
     </div>
   </div>
-  <aside class="notas">(1 minuto 30) Estas son las ecuaciones que la aplicación tiene programadas en el motor; con ellas calcula la posición y la velocidad en cada instante. En MRU la posición cambia igual en tiempos iguales. En MRUA usamos las ecuaciones de aceleración constante; la del cuadrado de la velocidad sirve cuando no nos dan el tiempo. Y el tiro parabólico es la idea clave del proyecto: no es una ecuación nueva, es un MRU en x y un MRUA en y al mismo tiempo. Por eso primero descomponemos la velocidad inicial con coseno y seno. Trabajamos con modelo ideal: sin aire y con g de 9.81.</aside>
+  <aside class="notas">(1 minuto 15) El tiro parabólico es la idea clave del proyecto: no es una fórmula nueva, son dos movimientos al mismo tiempo. Primero descomponemos la velocidad inicial con coseno y seno. En la subida, la velocidad vertical llega a cero en el punto más alto: de ahí salen el tiempo de subida y la altura máxima. El tiempo de vuelo es cuando la altura vuelve a cero, y el alcance es la velocidad horizontal por ese tiempo. Trabajamos con el modelo ideal: sin aire y con g de 9.81.</aside>
 </section>
 
 <!-- 5 · ARQUITECTURA -->
@@ -260,12 +271,12 @@
   <p class="ojo">12 · Verificación</p>
   <h2 class="titulo">Pruebas realizadas</h2>
   <div class="fila" style="margin-top:48px;">
-    <div class="tarjeta entra" style="--i:0;"><p class="grande-num" data-contar="53">53</p><p><b>pruebas automáticas</b>, todas pasan: 16 del motor, 10 del servidor y 27 de la interfaz.</p></div>
+    <div class="tarjeta entra" style="--i:0;"><p class="grande-num" data-contar="55">55</p><p><b>pruebas automáticas</b>, todas pasan: 16 del motor, 10 del servidor y 29 de la interfaz.</p></div>
     <div class="tarjeta entra" style="--i:1;"><p class="grande-num" data-contar="23">23</p><p><b>pruebas de paridad</b>: la copia sin internet (un solo HTML) da los mismos resultados que el motor en Rust.</p></div>
     <div class="tarjeta entra" style="--i:2;"><p class="grande-num" style="color:var(--rojo);"><span data-contar="10">10</span>/10</p><p><b>niveles del juego</b> comprobados: cada uno se puede ganar con algún tiro.</p></div>
   </div>
   <p class="paso" style="font-size:28px; line-height:1.45; margin:44px 0 0;">Además comparamos los ejemplos con ejercicios resueltos a mano. Las pruebas dan confianza en los casos probados, pero no garantizan que no haya errores en todos los casos posibles.</p>
-  <aside class="notas">(1 minuto) Para confiar en los resultados escribimos pruebas automáticas: 53 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honestos: las pruebas cubren los casos que probamos, no todos los posibles.</aside>
+  <aside class="notas">(1 minuto) Para confiar en los resultados escribimos pruebas automáticas: 55 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honestos: las pruebas cubren los casos que probamos, no todos los posibles.</aside>
 </section>
 
 <!-- 14 · PUBLICACIÓN -->
@@ -285,20 +296,8 @@
   <aside class="notas">(1 minuto) ¿Cómo se accede? La aplicación está publicada como sitio web, así que se abre desde cualquier navegador o celular sin instalar nada; también la tenemos en un solo archivo HTML por si no hay internet. La versión completa, con el servidor en Node y el motor en Rust, es la que se usa para seguir desarrollando. La aplicación está publicada en Vercel en cinemalab-mec115.vercel.app y el código está en GitHub. Cada vez que subimos un cambio al repositorio, Vercel vuelve a publicar la página automáticamente. Invítenlos a abrirla desde el celular. En la lámina hay un código QR: invítenlos a escanearlo.</aside>
 </section>
 
-<!-- 15 · LÍMITES -->
-<section class="lamina hoja" data-titulo="14 · Alcances y mejoras" data-tiempo="45">
-  <p class="ojo">14 · Alcances y mejoras</p>
-  <h2 class="titulo">Limitaciones conocidas y trabajo futuro</h2>
-  <div class="fila" style="margin-top:48px;">
-    <div class="tarjeta paso"><h3>Supuestos del modelo</h3><p>Sin resistencia del aire, g constante y el objeto como partícula. Por eso, lanzando desde el suelo, el alcance máximo siempre sale a 45°.</p></div>
-    <div class="tarjeta paso"><h3>Observaciones pendientes</h3><p>Resuelve un solo móvil a la vez: no hace problemas de encuentro. La narración depende de las voces que traiga el navegador.</p></div>
-    <div class="tarjeta paso"><h3>Mejoras posibles</h3><p>Agregar el aire, caída libre y MCU, problemas de encuentro y exportar la hoja de solución en PDF.</p></div>
-  </div>
-  <aside class="notas">(1 minuto) También queremos ser honestos con lo que la aplicación todavía no hace. Trabaja con el modelo ideal: sin aire, con g constante y el objeto como un punto; en la vida real, con aire, el mejor ángulo es menor a 45. Solo resuelve un móvil a la vez, así que problemas de encuentro todavía no, y la narración del modo clase depende de las voces que tenga instalado el navegador. Como mejoras pensamos en agregar la resistencia del aire, más temas y exportar la solución en PDF.</aside>
-</section>
-
 <!-- 16 · CIERRE -->
-<section class="lamina pizarra" data-titulo="Cierre · ¿Preguntas?" data-tiempo="30">
+<section class="lamina pizarra" data-titulo="Cierre" data-tiempo="30">
   <div class="trazo" style="left:1032px; top:560px; width:760px; height:360px;">
     <svg width="760" height="360" viewBox="0 0 760 360" aria-hidden="true"><path d="M20 340 Q 360 -120 700 280" fill="none" stroke="#EEF2EA" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 26" opacity=".8"/></svg>
   </div>
@@ -310,10 +309,9 @@
     <p class="ojo entra" style="--i:0">Cierre</p>
     <p class="grande entra" style="--i:1">De la fórmula<br>al hondillazo</p>
     <p class="sub entra" style="--i:2">CinemaLab integra física, programación y visualización: el procedimiento del cuaderno, animado y jugable.</p>
-    <p class="entra" style="--i:3; font-family:var(--mano); font-size:68px; font-weight:700; color:var(--tiza-mango); margin:24px 0 0;">¿Preguntas?</p>
   </div>
   <p class="dato" style="position:absolute; left:128px; bottom:96px;">Pruébenla: cinemalab-mec115.vercel.app</p>
-  <aside class="notas">(30 segundos + preguntas) Para cerrar: con CinemaLab quisimos pasar de la fórmula al hondillazo. La aplicación resuelve como en el cuaderno, lo explica y lo convierte en juego. Muchas gracias. ¿Tienen alguna pregunta? Si sobra tiempo, inviten al docente a lanzar un hondillazo.</aside>
+  <aside class="notas">(30 segundos) Para cerrar: con CinemaLab quisimos pasar de la fórmula al hondillazo. La aplicación resuelve como en el cuaderno, lo explica y lo convierte en juego. Muchas gracias por su atención. Si sobra tiempo, inviten al docente a lanzar un hondillazo.</aside>
 </section>
 
 </div>

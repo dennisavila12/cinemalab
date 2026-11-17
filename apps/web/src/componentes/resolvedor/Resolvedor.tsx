@@ -5,6 +5,7 @@ import { leerNumero } from '../../lib/formato';
 import { estadoEn } from '../../lib/interpolar';
 import { useReloj } from '../../hooks/useReloj';
 import { Formula } from '../comunes/Formula';
+import { Significados } from '../comunes/Significados';
 import { Graficas } from '../graficas/Graficas';
 import { Controles } from '../simulacion/Controles';
 import { EscenaMovimiento } from '../simulacion/EscenaMovimiento';
@@ -148,9 +149,9 @@ export function Resolvedor({ modelo, onExplicar }: { modelo: Modelo; onExplicar:
           </ul>
         </section>
 
-        <details className="ecuaciones">
-          <summary>Ecuaciones del modelo</summary>
-          <ul>{modelo.ecuaciones.map((e) => <li key={e}><Formula tex={e} /></li>)}</ul>
+        <details className="ecuaciones" open>
+          <summary>Ecuaciones del modelo y qué significa cada letra</summary>
+          <ul>{modelo.ecuaciones.map((e) => <li key={e}><Formula tex={e} /><Significados tex={e} variables={modelo.variables} /></li>)}</ul>
         </details>
       </aside>
 

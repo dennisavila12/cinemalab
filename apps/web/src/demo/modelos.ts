@@ -15,15 +15,15 @@ const mru: ModeloInterno = {
   nombre: 'Movimiento Rectilíneo Uniforme',
   descripcion: 'Velocidad constante y aceleración nula.',
   dimension: 'recta',
-  variables: [libre('dx', '\\Delta x', 'Desplazamiento', 'm'), libre('v', 'v', 'Velocidad', 'm/s'), noNegativa('t', 't', 'Tiempo', 's')],
+  variables: [libre('dx', 'd', 'Distancia', 'm'), libre('v', 'v', 'Velocidad', 'm/s'), noNegativa('t', 't', 'Tiempo', 's')],
   ecuaciones: [
     {
-      id: 'mru1', latex: '\\Delta x = v\\,t', vars: ['dx', 'v', 't'],
+      id: 'mru1', latex: 'd = v\\,t', vars: ['dx', 'v', 't'],
       residuo: (v) => [v.g('dx'), v.g('v') * v.g('t')],
       despejes: [
-        { var: 'dx', latex: '\\Delta x = v\\,t', prioridad: 1, f: (v) => ok(v.g('v') * v.g('t'), `\\Delta x = ${par(v.g('v'))}\\cdot ${par(v.g('t'))}`) },
-        { var: 'v', latex: 'v = \\dfrac{\\Delta x}{t}', prioridad: 1, f: (v) => (!nz(v.g('t')) ? NO : ok(v.g('dx') / v.g('t'), `v = \\dfrac{${par(v.g('dx'))}}{${par(v.g('t'))}}`)) },
-        { var: 't', latex: 't = \\dfrac{\\Delta x}{v}', prioridad: 1, f: (v) => (!nz(v.g('v')) ? NO : ok(v.g('dx') / v.g('v'), `t = \\dfrac{${par(v.g('dx'))}}{${par(v.g('v'))}}`)) },
+        { var: 'dx', latex: 'd = v\\,t', prioridad: 1, f: (v) => ok(v.g('v') * v.g('t'), `d = ${par(v.g('v'))}\\cdot ${par(v.g('t'))}`) },
+        { var: 'v', latex: 'v = \\dfrac{d}{t}', prioridad: 1, f: (v) => (!nz(v.g('t')) ? NO : ok(v.g('dx') / v.g('t'), `v = \\dfrac{${par(v.g('dx'))}}{${par(v.g('t'))}}`)) },
+        { var: 't', latex: 't = \\dfrac{d}{v}', prioridad: 1, f: (v) => (!nz(v.g('v')) ? NO : ok(v.g('dx') / v.g('v'), `t = \\dfrac{${par(v.g('dx'))}}{${par(v.g('v'))}}`)) },
       ],
     },
   ],
@@ -42,7 +42,7 @@ const mrua: ModeloInterno = {
   descripcion: 'Aceleración constante en línea recta: la velocidad cambia lo mismo cada segundo.',
   dimension: 'recta',
   variables: [
-    libre('dx', '\\Delta x', 'Desplazamiento', 'm'),
+    libre('dx', 'd', 'Distancia', 'm'),
     libre('v0', 'v_0', 'Velocidad inicial', 'm/s'),
     libre('v', 'v', 'Velocidad final', 'm/s'),
     libre('a', 'a', 'Aceleración', 'm/s²'),
@@ -60,24 +60,24 @@ const mrua: ModeloInterno = {
       ],
     },
     {
-      id: 'mrua2', latex: '\\Delta x = v_0\\,t + \\tfrac{1}{2}\\,a\\,t^2', vars: ['dx', 'v0', 'a', 't'],
+      id: 'mrua2', latex: 'd = v_0\\,t + \\tfrac{1}{2}\\,a\\,t^2', vars: ['dx', 'v0', 'a', 't'],
       residuo: (v) => [v.g('dx'), v.g('v0') * v.g('t') + 0.5 * v.g('a') * v.g('t') ** 2],
       despejes: [
-        { var: 'dx', latex: '\\Delta x = v_0\\,t + \\tfrac{1}{2}\\,a\\,t^2', prioridad: 1, f: (v) => {
+        { var: 'dx', latex: 'd = v_0\\,t + \\tfrac{1}{2}\\,a\\,t^2', prioridad: 1, f: (v) => {
           const [v0, a, t] = [v.g('v0'), v.g('a'), v.g('t')];
-          return ok(v0 * t + 0.5 * a * t * t, `\\Delta x = ${par(v0)}\\cdot ${par(t)} + \\tfrac{1}{2}\\cdot ${par(a)}\\cdot ${par(t)}^2`);
+          return ok(v0 * t + 0.5 * a * t * t, `d = ${par(v0)}\\cdot ${par(t)} + \\tfrac{1}{2}\\cdot ${par(a)}\\cdot ${par(t)}^2`);
         } },
-        { var: 'v0', latex: 'v_0 = \\dfrac{\\Delta x - \\tfrac{1}{2}\\,a\\,t^2}{t}', prioridad: 1, f: (v) => {
+        { var: 'v0', latex: 'v_0 = \\dfrac{d - \\tfrac{1}{2}\\,a\\,t^2}{t}', prioridad: 1, f: (v) => {
           const [dx, a, t] = [v.g('dx'), v.g('a'), v.g('t')];
           if (!nz(t)) return NO;
           return ok((dx - 0.5 * a * t * t) / t, `v_0 = \\dfrac{${par(dx)} - \\tfrac{1}{2}\\cdot ${par(a)}\\cdot ${par(t)}^2}{${par(t)}}`);
         } },
-        { var: 'a', latex: 'a = \\dfrac{2\\,(\\Delta x - v_0\\,t)}{t^2}', prioridad: 1, f: (v) => {
+        { var: 'a', latex: 'a = \\dfrac{2\\,(d - v_0\\,t)}{t^2}', prioridad: 1, f: (v) => {
           const [dx, v0, t] = [v.g('dx'), v.g('v0'), v.g('t')];
           if (!nz(t)) return NO;
           return ok((2 * (dx - v0 * t)) / (t * t), `a = \\dfrac{2\\,(${par(dx)} - ${par(v0)}\\cdot ${par(t)})}{${par(t)}^2}`);
         } },
-        { var: 't', latex: '\\tfrac{1}{2}\\,a\\,t^2 + v_0\\,t - \\Delta x = 0 \\;\\Rightarrow\\; t = \\dfrac{-v_0 \\pm \\sqrt{v_0^2 + 2\\,a\\,\\Delta x}}{a}', prioridad: 2, f: (v) => {
+        { var: 't', latex: '\\tfrac{1}{2}\\,a\\,t^2 + v_0\\,t - d = 0 \\;\\Rightarrow\\; t = \\dfrac{-v_0 \\pm \\sqrt{v_0^2 + 2\\,a\\,d}}{a}', prioridad: 2, f: (v) => {
           const [dx, v0, a] = [v.g('dx'), v.g('v0'), v.g('a')];
           const r = raicesPositivas(0.5 * a, v0, -dx);
           if (!r.length) return imposible(NO_LLEGA);
@@ -91,54 +91,54 @@ const mrua: ModeloInterno = {
       ],
     },
     {
-      id: 'mrua3', latex: 'v^2 = v_0^2 + 2\\,a\\,\\Delta x', vars: ['v', 'v0', 'a', 'dx'],
+      id: 'mrua3', latex: 'v^2 = v_0^2 + 2\\,a\\,d', vars: ['v', 'v0', 'a', 'dx'],
       residuo: (v) => [v.g('v') ** 2, v.g('v0') ** 2 + 2 * v.g('a') * v.g('dx')],
       despejes: [
-        { var: 'v', latex: 'v = \\pm\\sqrt{v_0^2 + 2\\,a\\,\\Delta x}', prioridad: 3, f: (v) => {
+        { var: 'v', latex: 'v = \\pm\\sqrt{v_0^2 + 2\\,a\\,d}', prioridad: 3, f: (v) => {
           const [v0, a, dx] = [v.g('v0'), v.g('a'), v.g('dx')];
           const rr = v0 * v0 + 2 * a * dx;
           if (rr < -1e-9) return imposible(NO_LLEGA);
           const s = nz(v0) ? sgn(v0) : sgn(a);
           return conNota(s * Math.sqrt(Math.max(rr, 0)), `v = \\pm\\sqrt{${par(v0)}^2 + 2\\cdot ${par(a)}\\cdot ${par(dx)}}`, 'Se toma el signo del sentido del movimiento (se supone que el móvil no se devuelve).');
         } },
-        { var: 'v0', latex: 'v_0 = \\pm\\sqrt{v^2 - 2\\,a\\,\\Delta x}', prioridad: 3, f: (v) => {
+        { var: 'v0', latex: 'v_0 = \\pm\\sqrt{v^2 - 2\\,a\\,d}', prioridad: 3, f: (v) => {
           const [vf, a, dx] = [v.g('v'), v.g('a'), v.g('dx')];
           const rr = vf * vf - 2 * a * dx;
           if (rr < -1e-9) return imposible(NO_LLEGA);
           const s = nz(vf) ? sgn(vf) : -sgn(a);
           return conNota(s * Math.sqrt(Math.max(rr, 0)), `v_0 = \\pm\\sqrt{${par(vf)}^2 - 2\\cdot ${par(a)}\\cdot ${par(dx)}}`, 'Se toma el signo del sentido del movimiento (se supone que el móvil no se devuelve).');
         } },
-        { var: 'a', latex: 'a = \\dfrac{v^2 - v_0^2}{2\\,\\Delta x}', prioridad: 1, f: (v) => {
+        { var: 'a', latex: 'a = \\dfrac{v^2 - v_0^2}{2\\,d}', prioridad: 1, f: (v) => {
           const [vf, v0, dx] = [v.g('v'), v.g('v0'), v.g('dx')];
           if (!nz(dx)) return NO;
           return ok((vf * vf - v0 * v0) / (2 * dx), `a = \\dfrac{${par(vf)}^2 - ${par(v0)}^2}{2\\cdot ${par(dx)}}`);
         } },
-        { var: 'dx', latex: '\\Delta x = \\dfrac{v^2 - v_0^2}{2\\,a}', prioridad: 1, f: (v) => {
+        { var: 'dx', latex: 'd = \\dfrac{v^2 - v_0^2}{2\\,a}', prioridad: 1, f: (v) => {
           const [vf, v0, a] = [v.g('v'), v.g('v0'), v.g('a')];
           if (!nz(a)) return NO;
-          return ok((vf * vf - v0 * v0) / (2 * a), `\\Delta x = \\dfrac{${par(vf)}^2 - ${par(v0)}^2}{2\\cdot ${par(a)}}`);
+          return ok((vf * vf - v0 * v0) / (2 * a), `d = \\dfrac{${par(vf)}^2 - ${par(v0)}^2}{2\\cdot ${par(a)}}`);
         } },
       ],
     },
     {
-      id: 'mrua4', latex: '\\Delta x = \\tfrac{1}{2}\\,(v_0 + v)\\,t', vars: ['dx', 'v0', 'v', 't'],
+      id: 'mrua4', latex: 'd = \\tfrac{1}{2}\\,(v_0 + v)\\,t', vars: ['dx', 'v0', 'v', 't'],
       residuo: (v) => [v.g('dx'), 0.5 * (v.g('v0') + v.g('v')) * v.g('t')],
       despejes: [
-        { var: 'dx', latex: '\\Delta x = \\tfrac{1}{2}\\,(v_0 + v)\\,t', prioridad: 1, f: (v) => {
+        { var: 'dx', latex: 'd = \\tfrac{1}{2}\\,(v_0 + v)\\,t', prioridad: 1, f: (v) => {
           const [v0, vf, t] = [v.g('v0'), v.g('v'), v.g('t')];
-          return ok(0.5 * (v0 + vf) * t, `\\Delta x = \\tfrac{1}{2}\\,(${par(v0)} + ${par(vf)})\\cdot ${par(t)}`);
+          return ok(0.5 * (v0 + vf) * t, `d = \\tfrac{1}{2}\\,(${par(v0)} + ${par(vf)})\\cdot ${par(t)}`);
         } },
-        { var: 'v0', latex: 'v_0 = \\dfrac{2\\,\\Delta x}{t} - v', prioridad: 1, f: (v) => {
+        { var: 'v0', latex: 'v_0 = \\dfrac{2\\,d}{t} - v', prioridad: 1, f: (v) => {
           const [dx, vf, t] = [v.g('dx'), v.g('v'), v.g('t')];
           if (!nz(t)) return NO;
           return ok((2 * dx) / t - vf, `v_0 = \\dfrac{2\\cdot ${par(dx)}}{${par(t)}} - ${par(vf)}`);
         } },
-        { var: 'v', latex: 'v = \\dfrac{2\\,\\Delta x}{t} - v_0', prioridad: 1, f: (v) => {
+        { var: 'v', latex: 'v = \\dfrac{2\\,d}{t} - v_0', prioridad: 1, f: (v) => {
           const [dx, v0, t] = [v.g('dx'), v.g('v0'), v.g('t')];
           if (!nz(t)) return NO;
           return ok((2 * dx) / t - v0, `v = \\dfrac{2\\cdot ${par(dx)}}{${par(t)}} - ${par(v0)}`);
         } },
-        { var: 't', latex: 't = \\dfrac{2\\,\\Delta x}{v_0 + v}', prioridad: 1, f: (v) => {
+        { var: 't', latex: 't = \\dfrac{2\\,d}{v_0 + v}', prioridad: 1, f: (v) => {
           const [dx, v0, vf] = [v.g('dx'), v.g('v0'), v.g('v')];
           if (!nz(v0 + vf)) return NO;
           return ok((2 * dx) / (v0 + vf), `t = \\dfrac{2\\cdot ${par(dx)}}{${par(v0)} + ${par(vf)}}`);
