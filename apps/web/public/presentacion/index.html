@@ -34,10 +34,10 @@
     <p class="sub entra" style="--i:2">Aplicación web para resolver, simular y aprender MRU, MRUA y tiro parabólico: paso a paso como en el cuaderno, con animaciones y un juego de hondilla.</p>
   </div>
   <div style="position:absolute; left:128px; top:800px; display:flex; flex-direction:column; gap:4px;">
-    <p class="dato entra" style="--i:3">[Integrante 1 · carnet] · [Integrante 2 · carnet] · Dennis Avila · AF23013</p>
+    <p class="dato entra" style="--i:3">Dennis Avila · AF23013</p>
     <p class="dato entra" style="--i:4">Docente: Ing. Gerson Menjívar · Grupo [__] · Noviembre 2026</p>
   </div>
-  <aside class="notas">(30 segundos) Buenos días. Somos [equipo]. Les vamos a presentar CinemaLab, la aplicación web que desarrollamos para Mecánica Clásica. Es una herramienta interactiva para estudiar el movimiento: resuelve ejercicios de MRU, MRUA y tiro parabólico paso a paso, los simula con animaciones y gráficas, los explica en un modo clase y tiene un juego de hondilla. En los próximos minutos les contamos qué busca resolver, cómo está construida, cómo funciona y cómo la probamos.</aside>
+  <aside class="notas">(30 segundos) Buenos días. Mi nombre es Dennis Avila. Les voy a presentar CinemaLab, la aplicación web que desarrollé para Mecánica Clásica. Es una herramienta interactiva para estudiar el movimiento: resuelve ejercicios de MRU, MRUA y tiro parabólico paso a paso, los simula con animaciones y gráficas, los explica en un modo clase y tiene un juego de hondilla. En los próximos minutos les cuento qué busca resolver, cómo está construida, cómo funciona y cómo la probé.</aside>
 </section>
 
 <!-- 2 · PROPÓSITO -->
@@ -54,7 +54,7 @@
     <p class="nota-mano">Objetivo general:</p>
     <p style="font-size:32px; line-height:1.4; color:var(--tinta); margin:0;">Desarrollar una aplicación web que permita resolver, simular y explicar problemas de MRU, MRUA y tiro parabólico, mostrando el procedimiento como se hace en clase.</p>
   </div>
-  <aside class="notas">(1 minuto) Empezamos por el propósito. La necesidad: cuando estudiamos cinemática casi siempre vemos ecuaciones y un número al final, pero no vemos el movimiento. La propuesta: una aplicación web donde uno mete los datos del problema y la aplicación lo resuelve paso a paso y además lo simula. El valor educativo es que conecta los datos, la fórmula, la gráfica y la trayectoria en una sola pantalla. El objetivo general es el que está aquí abajo.</aside>
+  <aside class="notas">(1 minuto) Empiezo por el propósito. La necesidad: cuando estudiamos cinemática casi siempre vemos ecuaciones y un número al final, pero no vemos el movimiento. La propuesta: una aplicación web donde uno mete los datos del problema y la aplicación lo resuelve paso a paso y además lo simula. El valor educativo es que conecta los datos, la fórmula, la gráfica y la trayectoria en una sola pantalla. El objetivo general es el que está aquí abajo.</aside>
 </section>
 
 <!-- 3 · ALCANCE -->
@@ -81,7 +81,7 @@
     <p class="chip">③ Modo clase que explica el tema</p>
     <p class="chip">④ Juego «La hondilla» (parabólico)</p>
   </div>
-  <aside class="notas">(1 minuto) La aplicación contempla tres modelos de cinemática ideal, organizados como en clase: en una dimensión el MRU y el MRUA, y en dos dimensiones el tiro parabólico. No metimos caída libre ni tiro vertical aparte porque son casos del MRUA. Todos los ejemplos son de aquí: un microbús, un pick-up frenando, una piedra desde el Cerro Verde. Y para cada movimiento la aplicación tiene cuatro herramientas: resolver ejercicios, la simulación con gráficas, un modo clase que explica el tema, y en el parabólico el juego de la hondilla.</aside>
+  <aside class="notas">(1 minuto) La aplicación contempla tres modelos de cinemática ideal, organizados como en clase: en una dimensión el MRU y el MRUA, y en dos dimensiones el tiro parabólico. No metí caída libre ni tiro vertical aparte porque son casos del MRUA. Todos los ejemplos son de aquí: un microbús, un pick-up frenando, una piedra desde el Cerro Verde. Y para cada movimiento la aplicación tiene cuatro herramientas: resolver ejercicios, la simulación con gráficas, un modo clase que explica el tema, y en el parabólico el juego de la hondilla.</aside>
 </section>
 
 <!-- 4 · FUNDAMENTO (MRU y MRUA) -->
@@ -139,13 +139,13 @@
     <div class="tarjeta entra" style="--i:4; flex:none; width:430px; background:#FFF6E8; border-color:#E8B46A;"><p class="ojo">El cerebro</p><h3>Motor en Rust</h3><p>Ecuaciones, despejes, simulación paso a paso y la física del juego. Se conecta a Node con napi-rs.</p></div>
   </div>
   <p class="nota-mano paso" style="margin-top:44px;">En la web publicada, el mismo motor en Rust corre dentro del navegador, compilado a WebAssembly.</p>
-  <aside class="notas">(1 minuto 30) Por dentro el proyecto tiene tres capas. La interfaz, hecha en React con TypeScript, es lo que el usuario ve: formularios, animaciones y gráficas. En el medio un servidor en Node.js que recibe el ejercicio, valida los datos y se lo pasa al motor. Y el motor, hecho en Rust, es donde está toda la física: las ecuaciones, el despeje y la simulación. La regla que seguimos es que la física solo está en el motor; la interfaz nunca hace cálculos, solo dibuja lo que el motor responde. Así, si una fórmula está bien en el motor, está bien en toda la aplicación. En la página publicada, ese mismo motor en Rust se compila a WebAssembly y corre dentro del navegador, así que no hace falta servidor. También tenemos una copia en un solo archivo HTML para usarla sin internet.</aside>
+  <aside class="notas">(1 minuto 30) Por dentro el proyecto tiene tres capas. La interfaz, hecha en React con TypeScript, es lo que el usuario ve: formularios, animaciones y gráficas. En el medio un servidor en Node.js que recibe el ejercicio, valida los datos y se lo pasa al motor. Y el motor, hecho en Rust, es donde está toda la física: las ecuaciones, el despeje y la simulación. La regla que seguí es que la física solo está en el motor; la interfaz nunca hace cálculos, solo dibuja lo que el motor responde. Así, si una fórmula está bien en el motor, está bien en toda la aplicación. En la página publicada, ese mismo motor en Rust se compila a WebAssembly y corre dentro del navegador, así que no hace falta servidor. También tengo una copia en un solo archivo HTML para usarla sin internet.</aside>
 </section>
 
 <!-- 6 · TECNOLOGÍAS -->
 <section class="lamina hoja" data-titulo="05 · Tecnologías" data-tiempo="45">
   <p class="ojo">05 · Tecnologías</p>
-  <h2 class="titulo">Herramientas que usamos</h2>
+  <h2 class="titulo">Herramientas que usé</h2>
   <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; margin-top:44px;">
     <div class="tarjeta entra" style="--i:0"><h3>Rust + WebAssembly</h3><p>Motor de física; en la web corre dentro del navegador.</p></div>
     <div class="tarjeta entra" style="--i:1"><h3>Node.js + Fastify</h3><p>API que conecta la interfaz con el motor (napi-rs).</p></div>
@@ -154,7 +154,7 @@
     <div class="tarjeta entra" style="--i:4"><h3>KaTeX + Web Speech</h3><p>Fórmulas como en el cuaderno y narración en voz alta.</p></div>
     <div class="tarjeta entra" style="--i:5"><h3>GitHub + Vercel</h3><p>Código versionado y publicación automática en la web.</p></div>
   </div>
-  <aside class="notas">(1 minuto) Rápido por las herramientas: Rust para el motor, que en la web se compila a WebAssembly, Node con Fastify para el servidor, React con TypeScript para la interfaz, Canvas para dibujar, KaTeX para que las fórmulas se vean como en el cuaderno y la Web Speech API para la narración. Todo organizado como un monorepo con pnpm; el código está en GitHub y Vercel lo publica solo. No se detengan mucho aquí; lo que más le interesa al docente es la física.</aside>
+  <aside class="notas">(1 minuto) Rápido por las herramientas: Rust para el motor, que en la web se compila a WebAssembly, Node con Fastify para el servidor, React con TypeScript para la interfaz, Canvas para dibujar, KaTeX para que las fórmulas se vean como en el cuaderno y la Web Speech API para la narración. Todo organizado como un monorepo con pnpm; el código está en GitHub y Vercel lo publica solo. No te detengás mucho aquí; lo que más le interesa al docente es la física.</aside>
 </section>
 
 <!-- 7 · FUNCIONAMIENTO -->
@@ -190,7 +190,7 @@
     </div>
     <div class="vivo" data-src="../index.html#mrua-resolver" style="width:1100px; height:780px; background-image:url(img/resolver_general.png);"><span class="sello">EN VIVO</span></div>
   </div>
-  <aside class="notas">(2 minutos, DEMO en vivo) Aquí abrimos la aplicación. Pestaña MRUA, Resolver ejercicio, ejemplo «Frenado en la carretera»: un pick-up va a 25 metros por segundo y frena en 50 metros. A la izquierda están los datos; la aceleración y el tiempo están marcados como incógnitas. Al darle Resolver y simular, a la derecha sale la hoja: datos, incógnitas en rojo, el paso 1 con la ecuación de velocidad al cuadrado porque no tenemos tiempo, la aceleración da menos 6.25 metros por segundo cuadrado, el signo negativo dice que frena; paso 2, el tiempo da 4 segundos; y abajo la respuesta con R barra. La ventana de la lámina es la aplicación real: se puede usar ahí mismo. Si no hay internet, se ve una captura de respaldo.</aside>
+  <aside class="notas">(2 minutos, DEMO en vivo) Aquí abro la aplicación. Pestaña MRUA, Resolver ejercicio, ejemplo «Frenado en la carretera»: un pick-up va a 25 metros por segundo y frena en 50 metros. A la izquierda están los datos; la aceleración y el tiempo están marcados como incógnitas. Al darle Resolver y simular, a la derecha sale la hoja: datos, incógnitas en rojo, el paso 1 con la ecuación de velocidad al cuadrado porque no tenemos tiempo, la aceleración da menos 6.25 metros por segundo cuadrado, el signo negativo dice que frena; paso 2, el tiempo da 4 segundos; y abajo la respuesta con R barra. La ventana de la lámina es la aplicación real: se puede usar ahí mismo. Si no hay internet, se ve una captura de respaldo.</aside>
 </section>
 
 <!-- 9 · EXPERIENCIA VISUAL -->
@@ -225,7 +225,7 @@
       <div class="entra" style="--i:2;"><p class="mano" style="font-size:36px; font-weight:700; color:var(--azul); margin:0;">Con tus datos</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Explica tu ejercicio, no solo el ejemplo.</p></div>
     </div>
   </div>
-  <aside class="notas">(1 minuto 30, DEMO corta) El modo clase es como una presentación dentro de la aplicación. En el parabólico tiene 15 escenas: primero descompone la velocidad, después muestra que en x es un MRU y en y un MRUA, el punto más alto, el tiempo de vuelo, y una escena del mango que se suelta del palo justo cuando pasa la piedra por arriba. Se puede activar la narración en voz alta. Y si antes resolvieron un ejercicio propio, la clase usa sus datos. Muestren dos o tres escenas, no todas, para cuidar el tiempo. La ventana es la aplicación real: pueden tocar «Siguiente» dentro de ella.</aside>
+  <aside class="notas">(1 minuto 30, DEMO corta) El modo clase es como una presentación dentro de la aplicación. En el parabólico tiene 15 escenas: primero descompone la velocidad, después muestra que en x es un MRU y en y un MRUA, el punto más alto, el tiempo de vuelo, y una escena del mango que se suelta del palo justo cuando pasa la piedra por arriba. Se puede activar la narración en voz alta. Y si antes se resolvió un ejercicio propio, la clase usa esos datos. Mostrá dos o tres escenas, no todas, para cuidar el tiempo. La ventana es la aplicación real: se puede tocar «Siguiente» dentro de ella.</aside>
 </section>
 
 <!-- 11 · JUEGO (en vivo) -->
@@ -238,7 +238,7 @@
     <p class="chip entra" style="--i:1">Bajá mangos · 3 palos</p>
     <p class="chip entra" style="--i:2">Hondillazos entre amigos · 2 jugadores</p>
   </div>
-  <aside class="notas">(2 minutos, DEMO con alguien del público) Este es el módulo de juego. Uno elige el ángulo y la rapidez y lanza la piedra con la hondilla. Hay tres modos: botar latas en lugares de aquí, como la cancha de la colonia, el parque de Juayúa o el cerro de Apaneca; bajar mangos del palo de la abuela; y hondillazos entre amigos para dos jugadores. Lo importante es que no es solo un juego: después de cada tiro la aplicación explica en una hoja de cuaderno qué pasó, por qué se pasó o se quedó corto. Idea: inviten a un compañero a lanzar una vez antes de explicar la siguiente lámina. La ventana de la lámina es el juego real: se puede lanzar ahí mismo.</aside>
+  <aside class="notas">(2 minutos, DEMO con alguien del público) Este es el módulo de juego. Uno elige el ángulo y la rapidez y lanza la piedra con la hondilla. Hay tres modos: botar latas en lugares de aquí, como la cancha de la colonia, el parque de Juayúa o el cerro de Apaneca; bajar mangos del palo de la abuela; y hondillazos entre amigos para dos jugadores. Lo importante es que no es solo un juego: después de cada tiro la aplicación explica en una hoja de cuaderno qué pasó, por qué se pasó o se quedó corto. Idea: invitá a un compañero a lanzar una vez antes de explicar la siguiente lámina. La ventana de la lámina es el juego real: se puede lanzar ahí mismo.</aside>
 </section>
 
 <!-- 12 · TIRO PERFECTO -->
@@ -275,8 +275,8 @@
     <div class="tarjeta entra" style="--i:1;"><p class="grande-num" data-contar="23">23</p><p><b>pruebas de paridad</b>: la copia sin internet (un solo HTML) da los mismos resultados que el motor en Rust.</p></div>
     <div class="tarjeta entra" style="--i:2;"><p class="grande-num" style="color:var(--rojo);"><span data-contar="10">10</span>/10</p><p><b>niveles del juego</b> comprobados: cada uno se puede ganar con algún tiro.</p></div>
   </div>
-  <p class="paso" style="font-size:28px; line-height:1.45; margin:44px 0 0;">Además comparamos los ejemplos con ejercicios resueltos a mano. Las pruebas dan confianza en los casos probados, pero no garantizan que no haya errores en todos los casos posibles.</p>
-  <aside class="notas">(1 minuto) Para confiar en los resultados escribimos pruebas automáticas: 55 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honestos: las pruebas cubren los casos que probamos, no todos los posibles.</aside>
+  <p class="paso" style="font-size:28px; line-height:1.45; margin:44px 0 0;">Además comparé los ejemplos con ejercicios resueltos a mano. Las pruebas dan confianza en los casos probados, pero no garantizan que no haya errores en todos los casos posibles.</p>
+  <aside class="notas">(1 minuto) Para confiar en los resultados escribí pruebas automáticas: 55 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honesto: las pruebas cubren los casos que probé, no todos los posibles.</aside>
 </section>
 
 <!-- 14 · PUBLICACIÓN -->
@@ -293,7 +293,7 @@
       <p class="nota-mano">¡Escanéenlo y pruébenla!</p>
     </div>
   </div>
-  <aside class="notas">(1 minuto) ¿Cómo se accede? La aplicación está publicada como sitio web, así que se abre desde cualquier navegador o celular sin instalar nada; también la tenemos en un solo archivo HTML por si no hay internet. La versión completa, con el servidor en Node y el motor en Rust, es la que se usa para seguir desarrollando. La aplicación está publicada en Vercel en cinemalab-mec115.vercel.app y el código está en GitHub. Cada vez que subimos un cambio al repositorio, Vercel vuelve a publicar la página automáticamente. Invítenlos a abrirla desde el celular. En la lámina hay un código QR: invítenlos a escanearlo.</aside>
+  <aside class="notas">(1 minuto) ¿Cómo se accede? La aplicación está publicada como sitio web, así que se abre desde cualquier navegador o celular sin instalar nada; también la tengo en un solo archivo HTML por si no hay internet. La versión completa, con el servidor en Node y el motor en Rust, es la que se usa para seguir desarrollando. La aplicación está publicada en Vercel en cinemalab-mec115.vercel.app y el código está en GitHub. Cada vez que subo un cambio al repositorio, Vercel vuelve a publicar la página automáticamente. Invitalos a abrirla desde el celular. En la lámina hay un código QR: invitalos a escanearlo.</aside>
 </section>
 
 <!-- 16 · CIERRE -->
@@ -311,7 +311,7 @@
     <p class="sub entra" style="--i:2">CinemaLab integra física, programación y visualización: el procedimiento del cuaderno, animado y jugable.</p>
   </div>
   <p class="dato" style="position:absolute; left:128px; bottom:96px;">Pruébenla: cinemalab-mec115.vercel.app</p>
-  <aside class="notas">(30 segundos) Para cerrar: con CinemaLab quisimos pasar de la fórmula al hondillazo. La aplicación resuelve como en el cuaderno, lo explica y lo convierte en juego. Muchas gracias por su atención. Si sobra tiempo, inviten al docente a lanzar un hondillazo.</aside>
+  <aside class="notas">(30 segundos) Para cerrar: con CinemaLab quise pasar de la fórmula al hondillazo. La aplicación resuelve como en el cuaderno, lo explica y lo convierte en juego. Muchas gracias por su atención. Si sobra tiempo, invitá al docente a lanzar un hondillazo.</aside>
 </section>
 
 </div>
