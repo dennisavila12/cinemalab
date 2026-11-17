@@ -41,8 +41,29 @@ async function pedirLocal<T>(ruta: string, cuerpo?: unknown): Promise<T> {
   }
 }
 
+/** En la web publicada, el motor original en Rust corre en el navegador compilado a WebAssembly (ver src/wasm). */
+export const MODO_WASM = import.meta.env.VITE_MODO === 'wasm';
+
+async function pedirWasm<T>(ruta: string, cuerpo?: unknown): Promise<T> {
+  const { motorWasm, ErrorWasm } = await import('../wasm/motor');
+  const rutas: Record<string, (c?: unknown) => Promise<unknown>> = {
+    '/modelos': motorWasm.modelos,
+    '/resolver': motorWasm.resolver,
+    '/leccion': motorWasm.leccion,
+    '/juego/escenarios': motorWasm.escenarios,
+    '/juego/tiro': motorWasm.tiro,
+    '/juego/sugerencia': motorWasm.sugerencia,
+  };
+  try {
+    return (await rutas[ruta](cuerpo)) as T;
+  } catch (e) {
+    throw new ErrorDeApi((e as Error).message, e instanceof ErrorWasm ? e.status : 500);
+  }
+}
+
 async function pedir<T>(ruta: string, cuerpo?: unknown): Promise<T> {
   if (MODO_DEMO) return pedirLocal<T>(ruta, cuerpo);
+  if (MODO_WASM) return pedirWasm<T>(ruta, cuerpo);
   let r: Response;
   try {
     r = await fetch(`${BASE}/api${ruta}`, {

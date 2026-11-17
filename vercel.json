@@ -1,7 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "pnpm install --frozen-lockfile",
-  "buildCommand": "pnpm --filter @cinemalab/web build:demo",
-  "outputDirectory": "apps/web/dist-demo",
-  "framework": null
+  "buildCommand": "bash scripts/vercel-build.sh",
+  "outputDirectory": "apps/web/dist",
+  "framework": null,
+  "headers": [
+    { "source": "/motor/(.*)\\.wasm", "headers": [{ "key": "Content-Type", "value": "application/wasm" }] }
+  ]
 }

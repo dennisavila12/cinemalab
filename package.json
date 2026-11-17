@@ -14,7 +14,8 @@
     "start": "pnpm --filter @cinemalab/api start",
     "test": "cargo test -p fisica-core && pnpm build:nativo && pnpm -r test",
     "typecheck": "pnpm -r typecheck",
-    "build:demo": "pnpm build:nativo && node scripts/generar-datos-demo.mjs && pnpm --filter @cinemalab/web build:demo"
+    "build:demo": "pnpm build:nativo && node scripts/generar-datos-demo.mjs && pnpm --filter @cinemalab/web build:demo",
+    "build:web": "bash scripts/vercel-build.sh"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

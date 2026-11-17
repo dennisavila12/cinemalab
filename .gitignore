@@ -6,3 +6,4 @@ target/
 coverage/
 dist-demo/
 *.node.tmp
+apps/web/public/motor/

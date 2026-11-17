@@ -127,8 +127,8 @@
     <div class="flujo"></div>
     <div class="tarjeta entra" style="--i:4; flex:none; width:430px; background:#FFF6E8; border-color:#E8B46A;"><p class="ojo">El cerebro</p><h3>Motor en Rust</h3><p>Ecuaciones, despejes, simulación paso a paso y la física del juego. Se conecta a Node con napi-rs.</p></div>
   </div>
-  <p class="nota-mano paso" style="margin-top:44px;">Versión web: el mismo motor pasado a TypeScript para que todo corra en el navegador, sin servidor.</p>
-  <aside class="notas">(1 minuto 30) Por dentro el proyecto tiene tres capas. La interfaz, hecha en React con TypeScript, es lo que el usuario ve: formularios, animaciones y gráficas. En el medio un servidor en Node.js que recibe el ejercicio, valida los datos y se lo pasa al motor. Y el motor, hecho en Rust, es donde está toda la física: las ecuaciones, el despeje y la simulación. La regla que seguimos es que la física solo está en el motor; la interfaz nunca hace cálculos, solo dibuja lo que el motor responde. Así, si una fórmula está bien en el motor, está bien en toda la aplicación. Para que se pueda probar sin instalar nada, hicimos una versión de un solo archivo HTML con el motor pasado a TypeScript.</aside>
+  <p class="nota-mano paso" style="margin-top:44px;">En la web publicada, el mismo motor en Rust corre dentro del navegador, compilado a WebAssembly.</p>
+  <aside class="notas">(1 minuto 30) Por dentro el proyecto tiene tres capas. La interfaz, hecha en React con TypeScript, es lo que el usuario ve: formularios, animaciones y gráficas. En el medio un servidor en Node.js que recibe el ejercicio, valida los datos y se lo pasa al motor. Y el motor, hecho en Rust, es donde está toda la física: las ecuaciones, el despeje y la simulación. La regla que seguimos es que la física solo está en el motor; la interfaz nunca hace cálculos, solo dibuja lo que el motor responde. Así, si una fórmula está bien en el motor, está bien en toda la aplicación. En la página publicada, ese mismo motor en Rust se compila a WebAssembly y corre dentro del navegador, así que no hace falta servidor. También tenemos una copia en un solo archivo HTML para usarla sin internet.</aside>
 </section>
 
 <!-- 6 · TECNOLOGÍAS -->
@@ -136,14 +136,14 @@
   <p class="ojo">05 · Tecnologías</p>
   <h2 class="titulo">Herramientas que usamos</h2>
   <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; margin-top:44px;">
-    <div class="tarjeta entra" style="--i:0"><h3>Rust</h3><p>Motor de física: rápido y con pruebas incluidas.</p></div>
+    <div class="tarjeta entra" style="--i:0"><h3>Rust + WebAssembly</h3><p>Motor de física; en la web corre dentro del navegador.</p></div>
     <div class="tarjeta entra" style="--i:1"><h3>Node.js + Fastify</h3><p>API que conecta la interfaz con el motor (napi-rs).</p></div>
     <div class="tarjeta entra" style="--i:2"><h3>React + TypeScript</h3><p>Interfaz por componentes, con tipos compartidos.</p></div>
     <div class="tarjeta entra" style="--i:3"><h3>Canvas 2D</h3><p>Animaciones, gráficas y el juego, a 60 cuadros por segundo.</p></div>
     <div class="tarjeta entra" style="--i:4"><h3>KaTeX + Web Speech</h3><p>Fórmulas como en el cuaderno y narración en voz alta.</p></div>
     <div class="tarjeta entra" style="--i:5"><h3>GitHub + Vercel</h3><p>Código versionado y publicación automática en la web.</p></div>
   </div>
-  <aside class="notas">(1 minuto) Rápido por las herramientas: Rust para el motor, Node con Fastify para el servidor, React con TypeScript para la interfaz, Canvas para dibujar, KaTeX para que las fórmulas se vean como en el cuaderno y la Web Speech API para la narración. Todo organizado como un monorepo con pnpm; el código está en GitHub y Vercel lo publica solo. No se detengan mucho aquí; lo que más le interesa al docente es la física.</aside>
+  <aside class="notas">(1 minuto) Rápido por las herramientas: Rust para el motor, que en la web se compila a WebAssembly, Node con Fastify para el servidor, React con TypeScript para la interfaz, Canvas para dibujar, KaTeX para que las fórmulas se vean como en el cuaderno y la Web Speech API para la narración. Todo organizado como un monorepo con pnpm; el código está en GitHub y Vercel lo publica solo. No se detengan mucho aquí; lo que más le interesa al docente es la física.</aside>
 </section>
 
 <!-- 7 · FUNCIONAMIENTO -->
@@ -260,12 +260,12 @@
   <p class="ojo">12 · Verificación</p>
   <h2 class="titulo">Pruebas realizadas</h2>
   <div class="fila" style="margin-top:48px;">
-    <div class="tarjeta entra" style="--i:0;"><p class="grande-num" data-contar="51">51</p><p><b>pruebas automáticas</b>, todas pasan: 14 del motor, 10 del servidor y 27 de la interfaz.</p></div>
-    <div class="tarjeta entra" style="--i:1;"><p class="grande-num" data-contar="23">23</p><p><b>pruebas de paridad</b>: la versión web da los mismos resultados que el motor en Rust.</p></div>
+    <div class="tarjeta entra" style="--i:0;"><p class="grande-num" data-contar="53">53</p><p><b>pruebas automáticas</b>, todas pasan: 16 del motor, 10 del servidor y 27 de la interfaz.</p></div>
+    <div class="tarjeta entra" style="--i:1;"><p class="grande-num" data-contar="23">23</p><p><b>pruebas de paridad</b>: la copia sin internet (un solo HTML) da los mismos resultados que el motor en Rust.</p></div>
     <div class="tarjeta entra" style="--i:2;"><p class="grande-num" style="color:var(--rojo);"><span data-contar="10">10</span>/10</p><p><b>niveles del juego</b> comprobados: cada uno se puede ganar con algún tiro.</p></div>
   </div>
   <p class="paso" style="font-size:28px; line-height:1.45; margin:44px 0 0;">Además comparamos los ejemplos con ejercicios resueltos a mano. Las pruebas dan confianza en los casos probados, pero no garantizan que no haya errores en todos los casos posibles.</p>
-  <aside class="notas">(1 minuto) Para confiar en los resultados escribimos pruebas automáticas: 51 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honestos: las pruebas cubren los casos que probamos, no todos los posibles.</aside>
+  <aside class="notas">(1 minuto) Para confiar en los resultados escribimos pruebas automáticas: 53 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honestos: las pruebas cubren los casos que probamos, no todos los posibles.</aside>
 </section>
 
 <!-- 14 · PUBLICACIÓN -->

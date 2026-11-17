@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p .",
-    "build:demo": "tsc --noEmit -p . && vite build --mode demo"
+    "build:demo": "tsc --noEmit -p . && vite build --mode demo",
+    "build:wasm": "tsc --noEmit -p . && vite build --mode wasm"
   },
   "dependencies": {
     "@cinemalab/contratos": "workspace:*",

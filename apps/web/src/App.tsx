@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { IdModelo, Modelo } from '@cinemalab/contratos';
-import { api, MODO_DEMO } from './api/cliente';
+import { api, MODO_DEMO, MODO_WASM } from './api/cliente';
 import icono from './recursos/icono.svg';
 import { Pestanas } from './componentes/comunes/Pestanas';
 import { ModoClase } from './componentes/clase/ModoClase';
@@ -81,7 +81,9 @@ export function App() {
 
       <footer className="pie">
         {MODO_DEMO && <p className="aviso-demo">Versión de demostración: todo corre en el navegador, sin servidor.</p>}
-        Proyecto de Mecánica Clásica (MEC115) · Motor de física en Rust · API en Node.js · Interfaz en React · g = 9.81 m/s² · sin resistencia del aire
+        {MODO_WASM
+          ? 'Proyecto de Mecánica Clásica (MEC115) · Motor de física en Rust, compilado a WebAssembly y corriendo en tu navegador · Interfaz en React · g = 9.81 m/s² · sin resistencia del aire'
+          : 'Proyecto de Mecánica Clásica (MEC115) · Motor de física en Rust · API en Node.js · Interfaz en React · g = 9.81 m/s² · sin resistencia del aire'}
       </footer>
     </>
   );

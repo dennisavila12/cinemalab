@@ -1,0 +1,12 @@
+[package]
+name = "fisica-wasm"
+description = "Puente WebAssembly del motor de física: el mismo motor en Rust, corriendo dentro del navegador"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+fisica-core = { path = "../fisica-core" }
