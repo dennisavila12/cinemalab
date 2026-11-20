@@ -58,7 +58,7 @@
 </section>
 
 <!-- 3 · ALCANCE -->
-<section class="lamina hoja" data-titulo="02 · Alcance" data-tiempo="60">
+<section class="lamina hoja" data-titulo="02 · Alcance" data-tiempo="45">
   <p class="ojo">02 · Alcance</p>
   <h2 class="titulo">Movimientos que contempla la aplicación</h2>
   <div style="display:flex; gap:32px; margin-top:36px;">
@@ -81,11 +81,11 @@
     <p class="chip">③ Modo clase que explica el tema</p>
     <p class="chip">④ Juego «La hondilla» (parabólico)</p>
   </div>
-  <aside class="notas">(1 minuto) La aplicación contempla tres modelos de cinemática ideal, organizados como en clase: en una dimensión el MRU y el MRUA, y en dos dimensiones el tiro parabólico. No metí caída libre ni tiro vertical aparte porque son casos del MRUA. Todos los ejemplos son de aquí: un microbús, un pick-up frenando, una piedra desde el Cerro Verde. Y para cada movimiento la aplicación tiene cuatro herramientas: resolver ejercicios, la simulación con gráficas, un modo clase que explica el tema, y en el parabólico el juego de la hondilla.</aside>
+  <aside class="notas">(45 segundos) La aplicación contempla tres modelos de cinemática ideal, organizados como en clase: en una dimensión el MRU y el MRUA, y en dos dimensiones el tiro parabólico. No metí caída libre ni tiro vertical aparte porque son casos del MRUA. Todos los ejemplos son de aquí: un microbús, un pick-up frenando, una piedra desde el Cerro Verde. Y para cada movimiento la aplicación tiene cuatro herramientas: resolver ejercicios, la simulación con gráficas, un modo clase que explica el tema, y en el parabólico el juego de la hondilla.</aside>
 </section>
 
 <!-- 4 · FUNDAMENTO (MRU y MRUA) -->
-<section class="lamina hoja" data-titulo="03 · Fundamento: MRU y MRUA" data-tiempo="75">
+<section class="lamina hoja" data-titulo="03 · Fundamento físico" data-tiempo="60">
   <p class="ojo">03 · Fundamento físico</p>
   <h2 class="titulo">Fórmulas de MRU y MRUA</h2>
   <p class="bajada">Son las mismas que usa la aplicación. Unidades del SI.</p>
@@ -105,7 +105,7 @@
 </section>
 
 <!-- 5 · FUNDAMENTO (PARABÓLICO) -->
-<section class="lamina hoja" data-titulo="03 · Fundamento: tiro parabólico" data-tiempo="75">
+<section class="lamina hoja" data-titulo="03 · Fundamento físico" data-tiempo="60">
   <p class="ojo">03 · Fundamento físico</p>
   <h2 class="titulo">Tiro parabólico: dos movimientos a la vez</h2>
   <p class="bajada">En x es un MRU y en y es un MRUA con a = −g · g = 9.81 m/s² · sin resistencia del aire</p>
@@ -123,43 +123,12 @@
       <p style="margin:0 0 0 294px; font-size:24px; line-height:1.4; color:var(--suave);"><i>donde</i> <b>tᵥ</b> = tiempo de vuelo (s) · <b>R</b> = alcance horizontal (m)</p>
     </div>
   </div>
-  <aside class="notas">(1 minuto 15) El tiro parabólico es la idea clave del proyecto: no es una fórmula nueva, son dos movimientos al mismo tiempo. Primero descomponemos la velocidad inicial con coseno y seno. En la subida, la velocidad vertical llega a cero en el punto más alto: de ahí salen el tiempo de subida y la altura máxima. El tiempo de vuelo es cuando la altura vuelve a cero, y el alcance es la velocidad horizontal por ese tiempo. Trabajamos con el modelo ideal: sin aire y con g de 9.81.</aside>
-</section>
-
-<!-- 5 · ARQUITECTURA -->
-<section class="lamina hoja" data-titulo="04 · Diseño del sistema" data-tiempo="75">
-  <p class="ojo">04 · Diseño del sistema</p>
-  <h2 class="titulo">Arquitectura en tres capas</h2>
-  <p class="bajada">La física vive en un solo lugar: el motor en Rust. La interfaz nunca calcula, solo muestra.</p>
-  <div style="display:flex; align-items:stretch; margin-top:56px;">
-    <div class="tarjeta entra" style="--i:0; flex:none; width:430px;"><p class="ojo">Lo que se ve</p><h3>Interfaz web</h3><p>React + TypeScript. Formularios, animación en Canvas, gráficas, fórmulas con KaTeX, modo clase y juego.</p></div>
-    <div class="flujo"></div>
-    <div class="tarjeta entra" style="--i:2; flex:none; width:430px;"><p class="ojo">El puente</p><h3>Servidor Node.js</h3><p>Fastify + zod. Recibe el ejercicio en JSON, revisa que los datos sean válidos y llama al motor.</p></div>
-    <div class="flujo"></div>
-    <div class="tarjeta entra" style="--i:4; flex:none; width:430px; background:#FFF6E8; border-color:#E8B46A;"><p class="ojo">El cerebro</p><h3>Motor en Rust</h3><p>Ecuaciones, despejes, simulación paso a paso y la física del juego. Se conecta a Node con napi-rs.</p></div>
-  </div>
-  <p class="nota-mano paso" style="margin-top:44px;">En la web publicada, el mismo motor en Rust corre dentro del navegador, compilado a WebAssembly.</p>
-  <aside class="notas">(1 minuto 30) Por dentro el proyecto tiene tres capas. La interfaz, hecha en React con TypeScript, es lo que el usuario ve: formularios, animaciones y gráficas. En el medio un servidor en Node.js que recibe el ejercicio, valida los datos y se lo pasa al motor. Y el motor, hecho en Rust, es donde está toda la física: las ecuaciones, el despeje y la simulación. La regla que seguí es que la física solo está en el motor; la interfaz nunca hace cálculos, solo dibuja lo que el motor responde. Así, si una fórmula está bien en el motor, está bien en toda la aplicación. En la página publicada, ese mismo motor en Rust se compila a WebAssembly y corre dentro del navegador, así que no hace falta servidor. También tengo una copia en un solo archivo HTML para usarla sin internet.</aside>
-</section>
-
-<!-- 6 · TECNOLOGÍAS -->
-<section class="lamina hoja" data-titulo="05 · Tecnologías" data-tiempo="45">
-  <p class="ojo">05 · Tecnologías</p>
-  <h2 class="titulo">Herramientas que usé</h2>
-  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; margin-top:44px;">
-    <div class="tarjeta entra" style="--i:0"><h3>Rust + WebAssembly</h3><p>Motor de física; en la web corre dentro del navegador.</p></div>
-    <div class="tarjeta entra" style="--i:1"><h3>Node.js + Fastify</h3><p>API que conecta la interfaz con el motor (napi-rs).</p></div>
-    <div class="tarjeta entra" style="--i:2"><h3>React + TypeScript</h3><p>Interfaz por componentes, con tipos compartidos.</p></div>
-    <div class="tarjeta entra" style="--i:3"><h3>Canvas 2D</h3><p>Animaciones, gráficas y el juego, a 60 cuadros por segundo.</p></div>
-    <div class="tarjeta entra" style="--i:4"><h3>KaTeX + Web Speech</h3><p>Fórmulas como en el cuaderno y narración en voz alta.</p></div>
-    <div class="tarjeta entra" style="--i:5"><h3>GitHub + Vercel</h3><p>Código versionado y publicación automática en la web.</p></div>
-  </div>
-  <aside class="notas">(1 minuto) Rápido por las herramientas: Rust para el motor, que en la web se compila a WebAssembly, Node con Fastify para el servidor, React con TypeScript para la interfaz, Canvas para dibujar, KaTeX para que las fórmulas se vean como en el cuaderno y la Web Speech API para la narración. Todo organizado como un monorepo con pnpm; el código está en GitHub y Vercel lo publica solo. No te detengás mucho aquí; lo que más le interesa al docente es la física.</aside>
+  <aside class="notas">(1 minuto) El tiro parabólico es la idea clave del proyecto: no es una fórmula nueva, son dos movimientos al mismo tiempo. Primero descomponemos la velocidad inicial con coseno y seno. En la subida, la velocidad vertical llega a cero en el punto más alto: de ahí salen el tiempo de subida y la altura máxima. El tiempo de vuelo es cuando la altura vuelve a cero, y el alcance es la velocidad horizontal por ese tiempo. Trabajamos con el modelo ideal: sin aire y con g de 9.81.</aside>
 </section>
 
 <!-- 7 · FUNCIONAMIENTO -->
-<section class="lamina hoja" data-titulo="06 · Funcionamiento" data-tiempo="75">
-  <p class="ojo">06 · Funcionamiento</p>
+<section class="lamina hoja" data-titulo="04 · Funcionamiento" data-tiempo="45">
+  <p class="ojo">04 · Funcionamiento</p>
   <h2 class="titulo">Del dato inicial a la solución</h2>
   <p class="bajada">El usuario escribe lo que dice el problema y la aplicación hace el resto.</p>
   <div style="display:flex; gap:24px; margin-top:52px;">
@@ -173,14 +142,159 @@
     <p class="mano" style="font-size:44px; color:var(--mango); margin:0;">💡</p>
     <p style="flex:1;">Cada respuesta sigue el orden de clase: Datos · Incógnita · Fórmula · Despeje · Sustitución · R/. Si falta un dato o sobra uno que no cuadra, la aplicación lo avisa.</p>
   </div>
-  <aside class="notas">(1 minuto 30) Así funciona la aplicación, en cinco pasos. Uno: el usuario elige el movimiento y la herramienta. Dos: escribe los datos del problema y marca con el botón de signo de interrogación lo que le piden. Tres: el servidor valida que los valores tengan sentido. Cuatro: el motor resuelve; busca una ecuación donde solo falte una variable, la despeja, y ese resultado lo usa como dato para la siguiente, igual que cuando uno resuelve por partes. Cinco: se muestra la solución en una hoja tipo cuaderno, con la animación y las gráficas. Si falta un dato, o si uno mete un dato de más que contradice a los otros, la aplicación avisa.</aside>
+  <aside class="notas">(45 segundos) Así funciona la aplicación, en cinco pasos. Uno: el usuario elige el movimiento y la herramienta. Dos: escribe los datos del problema y marca con el botón de signo de interrogación lo que le piden. Tres: el servidor valida que los valores tengan sentido. Cuatro: el motor resuelve; busca una ecuación donde solo falte una variable, la despeja, y ese resultado lo usa como dato para la siguiente, igual que cuando uno resuelve por partes. Cinco: se muestra la solución en una hoja tipo cuaderno, con la animación y las gráficas. Si falta un dato, o si uno mete un dato de más que contradice a los otros, la aplicación avisa.</aside>
+</section>
+
+<!-- 5 · ARQUITECTURA -->
+<section class="lamina hoja" data-titulo="05 · Arquitectura" data-tiempo="60">
+  <p class="ojo">05 · Arquitectura</p>
+  <h2 class="titulo">Arquitectura en tres capas</h2>
+  <p class="bajada">La física vive en un solo lugar: el motor en Rust. La interfaz nunca calcula, solo muestra.</p>
+  <div style="display:flex; align-items:stretch; margin-top:56px;">
+    <div class="tarjeta entra" style="--i:0; flex:none; width:430px;"><p class="ojo">Lo que se ve</p><h3>Interfaz web</h3><p>React + TypeScript. Formularios, animación en Canvas, gráficas, fórmulas con KaTeX, modo clase y juego.</p></div>
+    <div class="flujo"></div>
+    <div class="tarjeta entra" style="--i:2; flex:none; width:430px;"><p class="ojo">El puente</p><h3>Servidor Node.js</h3><p>Fastify + zod. Recibe el ejercicio en JSON, revisa que los datos sean válidos y llama al motor.</p></div>
+    <div class="flujo"></div>
+    <div class="tarjeta entra" style="--i:4; flex:none; width:430px; background:#FFF6E8; border-color:#E8B46A;"><p class="ojo">El cerebro</p><h3>Motor en Rust</h3><p>Ecuaciones, despejes, simulación paso a paso y la física del juego. Se conecta a Node con napi-rs.</p></div>
+  </div>
+  <p class="nota-mano paso" style="margin-top:44px;">En la web publicada, el mismo motor en Rust corre dentro del navegador, compilado a WebAssembly.</p>
+  <aside class="notas">(1 minuto) Por dentro el proyecto tiene tres capas. La interfaz, hecha en React con TypeScript, es lo que el usuario ve: formularios, animaciones y gráficas. En el medio un servidor en Node.js que recibe el ejercicio, valida los datos y se lo pasa al motor. Y el motor, hecho en Rust, es donde está toda la física: las ecuaciones, el despeje y la simulación. La regla que seguí es que la física solo está en el motor; la interfaz nunca hace cálculos, solo dibuja lo que el motor responde. Así, si una fórmula está bien en el motor, está bien en toda la aplicación. En la página publicada, ese mismo motor en Rust se compila a WebAssembly y corre dentro del navegador, así que no hace falta servidor. También tengo una copia en un solo archivo HTML para usarla sin internet.</aside>
+</section>
+
+<!-- ESTRUCTURA DEL CÓDIGO -->
+<section class="lamina hoja" data-titulo="06 · Estructura del código" data-tiempo="60">
+  <p class="ojo">06 · Estructura del código</p>
+  <h2 class="titulo">Un repositorio, seis piezas</h2>
+  <div style="display:flex; gap:44px; margin-top:34px; align-items:flex-start;">
+<pre class="codigo entra" style="--i:0; width:1000px;"><b>cinemalab/</b>
+├─ crates/                     <span class="c"># Rust</span>
+│  ├─ <span class="f">fisica-core</span>   <span class="c">→ el motor: modelos, solver, juego</span>
+│  ├─ <span class="f">fisica-node</span>   <span class="c">→ puente Rust ↔ Node.js (napi-rs)</span>
+│  └─ <span class="f">fisica-wasm</span>   <span class="c">→ puente Rust ↔ navegador</span>
+├─ apps/                       <span class="c"># TypeScript</span>
+│  ├─ <span class="f">api</span>           <span class="c">→ servidor Fastify (rutas /api)</span>
+│  └─ <span class="f">web</span>           <span class="c">→ interfaz React + Canvas</span>
+└─ packages/
+   └─ <span class="f">contratos</span>     <span class="c">→ tipos y validación (zod)</span></pre>
+    <div style="flex:1; display:flex; flex-direction:column; gap:26px;">
+      <div class="razon paso"><div class="circulo">1</div><div><h3>Capas separadas</h3><p>Cada carpeta hace una sola cosa y se puede cambiar sin romper las otras.</p></div></div>
+      <div class="razon paso"><div class="circulo">2</div><div><h3>Un solo contrato</h3><p>Todas las piezas hablan el mismo JSON, definido una vez en «contratos».</p></div></div>
+      <div class="razon paso"><div class="circulo">3</div><div><h3>Motor sin estado</h3><p>Entra un ejercicio, sale la solución. No guarda nada: es fácil de probar.</p></div></div>
+    </div>
+  </div>
+  <aside class="notas">(1 minuto) Así está organizado el código. Es un solo repositorio, un monorepo, con seis piezas. En la carpeta crates está lo que está en Rust: fisica-core es el motor con toda la física; fisica-node y fisica-wasm son dos puentes para usar ese mismo motor desde el servidor o desde el navegador. En apps está lo de TypeScript: la API con Fastify y la interfaz con React. Y en packages están los contratos, es decir, la forma exacta del JSON que viaja entre las piezas, con su validación. Seguí tres principios: capas separadas, un solo contrato y un motor sin estado, que recibe un ejercicio y devuelve la solución sin guardar nada, por eso es fácil de probar.</aside>
+</section>
+
+<!-- POR QUÉ UNA API -->
+<section class="lamina hoja" data-titulo="07 · ¿Por qué una API?" data-tiempo="75">
+  <p class="ojo">07 · ¿Por qué una API?</p>
+  <h2 class="titulo">La API es el contrato entre la pantalla y la física</h2>
+  <div style="display:flex; gap:48px; margin-top:34px; align-items:flex-start;">
+    <div style="width:760px; display:flex; flex-direction:column; gap:24px;">
+      <div class="razon paso"><div class="circulo">1</div><div><h3>Separa responsabilidades</h3><p>La interfaz no sabe física y el motor no sabe de pantallas.</p></div></div>
+      <div class="razon paso"><div class="circulo">2</div><div><h3>Sirve para cualquier cliente</h3><p>La web, una app de celular u otro programa piden lo mismo y reciben el mismo JSON.</p></div></div>
+      <div class="razon paso"><div class="circulo">3</div><div><h3>Valida en la entrada</h3><p>Si un dato viene mal, se rechaza antes de llegar al motor (error 400).</p></div></div>
+      <div class="razon paso"><div class="circulo rojo">4</div><div><h3>Se prueba por partes</h3><p>La API tiene sus propias 10 pruebas, aparte de las del motor.</p></div></div>
+    </div>
+    <div class="tarjeta entra" style="--i:1; flex:1;">
+      <p class="codigo-titulo">Rutas de la API</p>
+      <table class="tabla-api">
+        <tr><td><span class="verbo">GET</span>/api/modelos</td><td>Modelos y sus ecuaciones</td></tr>
+        <tr><td><span class="verbo post">POST</span>/api/resolver</td><td>Resuelve un ejercicio</td></tr>
+        <tr><td><span class="verbo post">POST</span>/api/leccion</td><td>Arma el modo clase</td></tr>
+        <tr><td><span class="verbo">GET</span>/api/juego/escenarios</td><td>Niveles del juego</td></tr>
+        <tr><td><span class="verbo post">POST</span>/api/juego/tiro</td><td>Simula un tiro</td></tr>
+        <tr><td><span class="verbo post">POST</span>/api/juego/sugerencia</td><td>Calcula el tiro perfecto</td></tr>
+      </table>
+    </div>
+  </div>
+  <aside class="notas">(1 minuto 15) ¿Por qué usé una API? Una API es como un contrato: define qué se le puede pedir al sistema y qué responde. Le encontré cuatro ventajas. Uno, separa responsabilidades: la pantalla no sabe nada de física y el motor no sabe nada de pantallas. Dos, sirve para cualquier cliente: hoy la usa la página web, pero mañana una app de celular podría pedir exactamente lo mismo. Tres, valida en la entrada: si llega un dato mal escrito, la API lo rechaza con un error 400 antes de que llegue al motor. Y cuatro, se prueba por separado: la API tiene sus propias 10 pruebas. A la derecha están las seis rutas: GET para consultar, como los modelos o los niveles, y POST para mandar datos y que el motor calcule, como resolver un ejercicio o simular un tiro.</aside>
+</section>
+
+<!-- ASÍ VIAJA UN EJERCICIO -->
+<section class="lamina hoja" data-titulo="08 · Así viaja un ejercicio" data-tiempo="60">
+  <p class="ojo">08 · Así viaja un ejercicio</p>
+  <h2 class="titulo">De la pantalla al motor y de regreso</h2>
+  <div style="display:flex; gap:36px; margin-top:30px; align-items:flex-start;">
+    <div class="entra" style="--i:0; width:700px;">
+      <p class="codigo-titulo">① La interfaz pide · POST /api/resolver</p>
+<pre class="codigo">{
+  <span class="s">"modelo"</span>: <span class="s">"mrua"</span>,
+  <span class="s">"datos"</span>: { <span class="s">"v0"</span>: <span class="n">25</span>, <span class="s">"v"</span>: <span class="n">0</span>, <span class="s">"dx"</span>: <span class="n">50</span> },
+  <span class="s">"incognitas"</span>: [<span class="s">"a"</span>, <span class="s">"t"</span>]
+}</pre>
+      <p class="codigo-titulo" style="margin-top:26px;">② La API valida y llama al motor</p>
+<pre class="codigo">app.<span class="f">post</span>(<span class="s">'/resolver'</span>, <span class="k">async</span> (req) =&gt;
+  motor.<span class="f">resolver</span>(
+    <span class="f">validar</span>(EntradaResolver, req.body)
+  ));</pre>
+    </div>
+    <div class="entra" style="--i:1; flex:1;">
+      <p class="codigo-titulo">③ El motor responde (resumen)</p>
+<pre class="codigo">{
+  <span class="s">"solucion"</span>: {
+    <span class="s">"valores"</span>: { <span class="s">"a"</span>: <span class="n">-6.25</span>, <span class="s">"t"</span>: <span class="n">4</span> },
+    <span class="s">"pasos"</span>: [{
+      <span class="s">"ecuacion"</span>:    <span class="s">"v² = v0² + 2ad"</span>,
+      <span class="s">"despeje"</span>:     <span class="s">"a = (v² − v0²) / 2d"</span>,
+      <span class="s">"sustitucion"</span>: <span class="s">"a = (0² − 25²) / (2·50)"</span>,
+      <span class="s">"resultado"</span>:   <span class="s">"a = −6.25 m/s²"</span>
+    }, <span class="c">…</span>]
+  },
+  <span class="s">"simulacion"</span>: { <span class="s">"muestras"</span>: [ <span class="c">601 puntos</span> ] }
+}</pre>
+      <p class="nota-mano" style="margin-top:16px;">④ La interfaz dibuja la hoja y la animación.</p>
+    </div>
+  </div>
+  <aside class="notas">(1 minuto) Así viaja un ejercicio, con el ejemplo del pick-up. Uno: la interfaz manda un JSON a la ruta resolver con el modelo, los datos y las incógnitas. Dos: la API valida ese JSON y se lo pasa al motor; son solo dos líneas de código. Tres: el motor responde con los valores, los pasos ya escritos —la ecuación, el despeje, la sustitución y el resultado— y 601 puntos de la simulación. Cuatro: la interfaz solo dibuja la hoja de cuaderno y la animación con esos datos. En la página publicada el mismo JSON va directo al motor compilado a WebAssembly dentro del navegador, sin pasar por internet.</aside>
+</section>
+
+<!-- CÓDIGO CLAVE: SOLVER -->
+<section class="lamina hoja" data-titulo="09 · Código clave: el solver" data-tiempo="75">
+  <p class="ojo">09 · Código clave: el solver</p>
+  <h2 class="titulo">El solver resuelve como en el cuaderno</h2>
+  <div style="display:flex; gap:36px; margin-top:30px; align-items:flex-start;">
+    <div class="entra" style="--i:0; width:880px;">
+      <p class="codigo-titulo">solver.rs (simplificado)</p>
+<pre class="codigo" style="font-size:23px;"><span class="c">// Se repite hasta que no quede nada por despejar</span>
+<span class="k">loop</span> {
+  <span class="c">// 1. Ecuación con UNA sola incógnita</span>
+  <span class="k">let</span> <span class="f">Some</span>((ec, forma)) = <span class="f">buscar</span>(&amp;modelo, &amp;valores)
+      <span class="k">else</span> { <span class="k">break</span> };
+  <span class="c">// 2. Despejar y calcular</span>
+  <span class="k">match</span> (forma.f)(&amp;valores) {
+    Despeje::<span class="f">Valor</span> { valor, sustitucion, .. } =&gt; {
+      valores.<span class="f">insert</span>(forma.var, valor); <span class="c">// 3. dato nuevo</span>
+      pasos.<span class="f">push</span>(Paso { ec, sustitucion, .. });
+    }
+    _ =&gt; <span class="f">descartar</span>(ec, forma), <span class="c">// probar otra</span>
+  }
+}</pre>
+    </div>
+    <div class="entra" style="--i:1; flex:1;">
+      <p class="codigo-titulo">Así se escribe una ecuación (mrua.rs)</p>
+<pre class="codigo" style="font-size:22px;">Ecuacion {
+  latex: <span class="s">"v^2 = v_0^2 + 2ad"</span>,
+  vars:  [<span class="s">"v"</span>, <span class="s">"v0"</span>, <span class="s">"a"</span>, <span class="s">"dx"</span>],
+  despejes: [
+    FormaDespejada {
+      var: <span class="s">"a"</span>, prioridad: <span class="n">1</span>,
+      f: |v| (v² − v0²) / (<span class="n">2</span>·d),
+    },
+    <span class="c">// … y un despeje para cada letra</span>
+  ],
+}</pre>
+      <p style="font-size:24px; line-height:1.4; margin:18px 0 0;">Primero usa los despejes más sencillos (lineales) y deja las raíces para el final.</p>
+    </div>
+  </div>
+  <aside class="notas">(1 minuto 15) Esta es la parte más importante del código, el solver, y hace lo mismo que hacemos en el cuaderno. Es un ciclo: primero busca una ecuación del modelo donde solo falte una letra; si no hay ninguna, termina. Luego la despeja y calcula; el resultado se guarda como un dato nuevo y se anota el paso para mostrarlo en la hoja. Si un despeje no sirve, por ejemplo porque sale una raíz negativa, lo descarta y prueba otra ecuación. A la derecha se ve cómo está escrita una ecuación en Rust: su fórmula en LaTeX, qué letras usa, y un despeje para cada letra con una prioridad; primero se prefieren los despejes lineales, que son los más sencillos.</aside>
 </section>
 
 <!-- 8 · MÓDULO RESOLVER (en vivo) -->
-<section class="lamina hoja" data-titulo="07 · Módulo Resolver (demo en vivo)" data-tiempo="120">
+<section class="lamina hoja" data-titulo="10 · Módulo Resolver (demo en vivo)" data-tiempo="105">
   <div style="display:flex; gap:44px; align-items:flex-start;">
     <div style="width:520px; display:flex; flex-direction:column;">
-      <p class="ojo">07 · Módulo Resolver</p>
+      <p class="ojo">10 · Módulo Resolver</p>
       <h2 class="titulo">La solución, como en el cuaderno</h2>
       <div style="display:flex; flex-direction:column; gap:26px; margin-top:34px;">
         <div class="entra" style="--i:0;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">A la izquierda, los datos</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Con ? se marcan las incógnitas. Trae ejercicios de ejemplo de aquí.</p></div>
@@ -190,12 +304,12 @@
     </div>
     <div class="vivo" data-src="../index.html#mrua-resolver" style="width:1100px; height:780px; background-image:url(img/resolver_general.png);"><span class="sello">EN VIVO</span></div>
   </div>
-  <aside class="notas">(2 minutos, DEMO en vivo) Aquí abro la aplicación. Pestaña MRUA, Resolver ejercicio, ejemplo «Frenado en la carretera»: un pick-up va a 25 metros por segundo y frena en 50 metros. A la izquierda están los datos; la aceleración y el tiempo están marcados como incógnitas. Al darle Resolver y simular, a la derecha sale la hoja: datos, incógnitas en rojo, el paso 1 con la ecuación de velocidad al cuadrado porque no tenemos tiempo, la aceleración da menos 6.25 metros por segundo cuadrado, el signo negativo dice que frena; paso 2, el tiempo da 4 segundos; y abajo la respuesta con R barra. La ventana de la lámina es la aplicación real: se puede usar ahí mismo. Si no hay internet, se ve una captura de respaldo.</aside>
+  <aside class="notas">(1 minuto 45, DEMO en vivo) Aquí abro la aplicación. Pestaña MRUA, Resolver ejercicio, ejemplo «Frenado en la carretera»: un pick-up va a 25 metros por segundo y frena en 50 metros. A la izquierda están los datos; la aceleración y el tiempo están marcados como incógnitas. Al darle Resolver y simular, a la derecha sale la hoja: datos, incógnitas en rojo, el paso 1 con la ecuación de velocidad al cuadrado porque no tenemos tiempo, la aceleración da menos 6.25 metros por segundo cuadrado, el signo negativo dice que frena; paso 2, el tiempo da 4 segundos; y abajo la respuesta con R barra. La ventana de la lámina es la aplicación real: se puede usar ahí mismo. Si no hay internet, se ve una captura de respaldo.</aside>
 </section>
 
 <!-- 9 · EXPERIENCIA VISUAL -->
-<section class="lamina hoja" data-titulo="08 · Experiencia visual" data-tiempo="75">
-  <p class="ojo">08 · Experiencia visual</p>
+<section class="lamina hoja" data-titulo="11 · Experiencia visual" data-tiempo="45">
+  <p class="ojo">11 · Experiencia visual</p>
   <h2 class="titulo">¿Qué puede observar el usuario?</h2>
   <div style="display:flex; gap:32px; margin-top:30px; align-items:flex-start;">
     <div style="flex:1; display:flex; flex-direction:column; gap:20px;">
@@ -210,12 +324,12 @@
       <div class="paso"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">Gráficas y tabla</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Trayectoria, posición y velocidad contra el tiempo; la tabla se descarga en CSV.</p></div>
     </div>
   </div>
-  <aside class="notas">(1 minuto 30) Debajo de la solución está la parte visual. La animación muestra el objeto moviéndose con sus vectores de velocidad: en el parabólico se ve cómo vx no cambia y vy se hace cero en la altura máxima, que la aplicación marca. Se puede pausar y mover el tiempo con la barra, y el panel muestra los valores en ese instante. Al lado, las gráficas: trayectoria, posición contra tiempo y velocidad contra tiempo, más una tabla de valores que se puede descargar.</aside>
+  <aside class="notas">(45 segundos) Debajo de la solución está la parte visual. La animación muestra el objeto moviéndose con sus vectores de velocidad: en el parabólico se ve cómo vx no cambia y vy se hace cero en la altura máxima, que la aplicación marca. Se puede pausar y mover el tiempo con la barra, y el panel muestra los valores en ese instante. Al lado, las gráficas: trayectoria, posición contra tiempo y velocidad contra tiempo, más una tabla de valores que se puede descargar.</aside>
 </section>
 
 <!-- 10 · MODO CLASE (en vivo) -->
-<section class="lamina hoja" data-titulo="09 · Modo clase (demo)" data-tiempo="75">
-  <p class="ojo">09 · Modo clase</p>
+<section class="lamina hoja" data-titulo="12 · Modo clase (demo)" data-tiempo="60">
+  <p class="ojo">12 · Modo clase</p>
   <h2 class="titulo">La aplicación explica el tema</h2>
   <div style="display:flex; gap:40px; margin-top:30px; align-items:flex-start;">
     <div class="vivo" data-src="../index.html#parabolico-clase" style="width:1250px; height:680px; background-image:url(img/clase_par.png);"><span class="sello">EN VIVO</span></div>
@@ -225,12 +339,12 @@
       <div class="entra" style="--i:2;"><p class="mano" style="font-size:36px; font-weight:700; color:var(--azul); margin:0;">Con tus datos</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Explica tu ejercicio, no solo el ejemplo.</p></div>
     </div>
   </div>
-  <aside class="notas">(1 minuto 30, DEMO corta) El modo clase es como una presentación dentro de la aplicación. En el parabólico tiene 15 escenas: primero descompone la velocidad, después muestra que en x es un MRU y en y un MRUA, el punto más alto, el tiempo de vuelo, y una escena del mango que se suelta del palo justo cuando pasa la piedra por arriba. Se puede activar la narración en voz alta. Y si antes se resolvió un ejercicio propio, la clase usa esos datos. Mostrá dos o tres escenas, no todas, para cuidar el tiempo. La ventana es la aplicación real: se puede tocar «Siguiente» dentro de ella.</aside>
+  <aside class="notas">(1 minuto, DEMO corta) El modo clase es como una presentación dentro de la aplicación. En el parabólico tiene 15 escenas: primero descompone la velocidad, después muestra que en x es un MRU y en y un MRUA, el punto más alto, el tiempo de vuelo, y una escena del mango que se suelta del palo justo cuando pasa la piedra por arriba. Se puede activar la narración en voz alta. Y si antes se resolvió un ejercicio propio, la clase usa esos datos. Mostrá dos o tres escenas, no todas, para cuidar el tiempo. La ventana es la aplicación real: se puede tocar «Siguiente» dentro de ella.</aside>
 </section>
 
 <!-- 11 · JUEGO (en vivo) -->
-<section class="lamina hoja" data-titulo="10 · Juego La hondilla (demo)" data-tiempo="90">
-  <p class="ojo">10 · Juego</p>
+<section class="lamina hoja" data-titulo="13 · Juego La hondilla (demo)" data-tiempo="75">
+  <p class="ojo">13 · Juego</p>
   <h2 class="titulo">La hondilla: el parabólico jugando</h2>
   <div class="vivo" data-src="../index.html#parabolico-juego" style="width:1600px; height:640px; margin-top:26px; background-image:url(img/juego_mango.png);"><span class="sello">EN VIVO · ¡A jugar!</span></div>
   <div style="display:flex; gap:20px; margin-top:22px;">
@@ -238,12 +352,12 @@
     <p class="chip entra" style="--i:1">Bajá mangos · 3 palos</p>
     <p class="chip entra" style="--i:2">Hondillazos entre amigos · 2 jugadores</p>
   </div>
-  <aside class="notas">(2 minutos, DEMO con alguien del público) Este es el módulo de juego. Uno elige el ángulo y la rapidez y lanza la piedra con la hondilla. Hay tres modos: botar latas en lugares de aquí, como la cancha de la colonia, el parque de Juayúa o el cerro de Apaneca; bajar mangos del palo de la abuela; y hondillazos entre amigos para dos jugadores. Lo importante es que no es solo un juego: después de cada tiro la aplicación explica en una hoja de cuaderno qué pasó, por qué se pasó o se quedó corto. Idea: invitá a un compañero a lanzar una vez antes de explicar la siguiente lámina. La ventana de la lámina es el juego real: se puede lanzar ahí mismo.</aside>
+  <aside class="notas">(1 minuto 15, DEMO con alguien del público) Este es el módulo de juego. Uno elige el ángulo y la rapidez y lanza la piedra con la hondilla. Hay tres modos: botar latas en lugares de aquí, como la cancha de la colonia, el parque de Juayúa o el cerro de Apaneca; bajar mangos del palo de la abuela; y hondillazos entre amigos para dos jugadores. Lo importante es que no es solo un juego: después de cada tiro la aplicación explica en una hoja de cuaderno qué pasó, por qué se pasó o se quedó corto. Idea: invitá a un compañero a lanzar una vez antes de explicar la siguiente lámina. La ventana de la lámina es el juego real: se puede lanzar ahí mismo.</aside>
 </section>
 
 <!-- 12 · TIRO PERFECTO -->
-<section class="lamina hoja" data-titulo="11 · Juego por dentro" data-tiempo="90">
-  <p class="ojo">11 · Juego por dentro</p>
+<section class="lamina hoja" data-titulo="14 · Juego por dentro" data-tiempo="60">
+  <p class="ojo">14 · Juego por dentro</p>
   <h2 class="titulo">¿Cómo sugiere el tiro perfecto?</h2>
   <div style="display:flex; flex-direction:column; gap:30px; margin-top:40px;">
     <div class="paso" style="display:flex; align-items:center; gap:28px;">
@@ -263,12 +377,36 @@
     </div>
   </div>
   <p class="nota-mano paso" style="margin-top:34px;">Palo de la abuela con θ = 45°: la aplicación sugiere v₀ ≈ 14.6 m/s.</p>
-  <aside class="notas">(2 minutos) Esta es la parte de física más fuerte de la aplicación. Para que el juego sugiera el tiro perfecto hacemos lo mismo que haríamos en un examen. Uno: en x la velocidad es constante, entonces el tiempo para llegar a una distancia d es d entre v cero coseno de theta. Dos: ese tiempo lo metemos en la ecuación de la altura y se elimina t; queda la ecuación de la trayectoria, una parábola. Tres: ponemos las coordenadas del mango y despejamos v cero. Por ejemplo, para el palo de la abuela con 45 grados da unos 14.6 metros por segundo. Si el resultado de la raíz sale negativo, quiere decir que con ese ángulo no hay manera de llegar, y la aplicación lo avisa.</aside>
+  <aside class="notas">(1 minuto) Esta es la parte de física más fuerte de la aplicación. Para que el juego sugiera el tiro perfecto hacemos lo mismo que haríamos en un examen. Uno: en x la velocidad es constante, entonces el tiempo para llegar a una distancia d es d entre v cero coseno de theta. Dos: ese tiempo lo metemos en la ecuación de la altura y se elimina t; queda la ecuación de la trayectoria, una parábola. Tres: ponemos las coordenadas del mango y despejamos v cero. Por ejemplo, para el palo de la abuela con 45 grados da unos 14.6 metros por segundo. Si el resultado de la raíz sale negativo, quiere decir que con ese ángulo no hay manera de llegar, y la aplicación lo avisa.</aside>
+</section>
+
+<!-- CÓDIGO CLAVE: JUEGO -->
+<section class="lamina hoja" data-titulo="15 · Código clave: el juego" data-tiempo="45">
+  <p class="ojo">15 · Código clave: el juego</p>
+  <h2 class="titulo">El juego mueve la piedra 240 veces por segundo</h2>
+  <div style="display:flex; gap:40px; margin-top:32px; align-items:flex-start;">
+<pre class="codigo entra" style="--i:0; width:1060px;"><span class="k">const</span> DT: f64 = <span class="n">1.0</span> / <span class="n">240.0</span>;     <span class="c">// paso de tiempo</span>
+<span class="k">loop</span> {
+  <span class="k">let</span> t = i <span class="k">as</span> f64 * DT;
+  <span class="c">// x = x0 + v0x·t     y = y0 + v0y·t − ½·g·t²</span>
+  <span class="k">let</span> (x, y) = <span class="f">posicion</span>(lanzador, angulo, rapidez, t);
+  <span class="k">if</span> <span class="f">toca</span>(lata, x, y)        { golpes.<span class="f">push</span>(lata) }
+  <span class="k">if</span> <span class="f">choca</span>(obstaculo, x, y)  { <span class="k">break</span> } <span class="c">// palo, muro…</span>
+  <span class="k">if</span> y &lt;= <span class="n">0.0</span> &amp;&amp; bajando     { <span class="k">break</span> } <span class="c">// llegó al suelo</span>
+  i += <span class="n">1</span>;
+}</pre>
+    <div style="flex:1; display:flex; flex-direction:column; gap:22px;">
+      <div class="razon paso"><div class="circulo">1</div><div><h3>Las fórmulas de clase</h3><p>La posición sale de las ecuaciones del tiro parabólico.</p></div></div>
+      <div class="razon paso"><div class="circulo">2</div><div><h3>Choques</h3><p>En cada paso revisa si la piedra tocó una lata, un mango o un obstáculo.</p></div></div>
+      <div class="razon paso"><div class="circulo rojo">3</div><div><h3>Explicación</h3><p>Con el resultado, otra parte del motor escribe por qué se pasó o se quedó corto.</p></div></div>
+    </div>
+  </div>
+  <aside class="notas">(45 segundos) Y así funciona el juego por dentro. El motor calcula la posición de la piedra 240 veces por segundo usando las mismas fórmulas del tiro parabólico: x igual a v cero x por t, y la altura con menos un medio de g t cuadrado. En cada paso revisa si la piedra tocó una lata o un mango, o si chocó con un palo o un muro, y se detiene cuando llega al suelo. Con ese resultado, otra parte del motor escribe la explicación del tiro en la hoja de cuaderno.</aside>
 </section>
 
 <!-- 13 · PRUEBAS -->
-<section class="lamina hoja" data-titulo="12 · Verificación" data-tiempo="45">
-  <p class="ojo">12 · Verificación</p>
+<section class="lamina hoja" data-titulo="16 · Verificación" data-tiempo="30">
+  <p class="ojo">16 · Verificación</p>
   <h2 class="titulo">Pruebas realizadas</h2>
   <div class="fila" style="margin-top:48px;">
     <div class="tarjeta entra" style="--i:0;"><p class="grande-num" data-contar="55">55</p><p><b>pruebas automáticas</b>, todas pasan: 16 del motor, 10 del servidor y 29 de la interfaz.</p></div>
@@ -276,12 +414,12 @@
     <div class="tarjeta entra" style="--i:2;"><p class="grande-num" style="color:var(--rojo);"><span data-contar="10">10</span>/10</p><p><b>niveles del juego</b> comprobados: cada uno se puede ganar con algún tiro.</p></div>
   </div>
   <p class="paso" style="font-size:28px; line-height:1.45; margin:44px 0 0;">Además comparé los ejemplos con ejercicios resueltos a mano. Las pruebas dan confianza en los casos probados, pero no garantizan que no haya errores en todos los casos posibles.</p>
-  <aside class="notas">(1 minuto) Para confiar en los resultados escribí pruebas automáticas: 55 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honesto: las pruebas cubren los casos que probé, no todos los posibles.</aside>
+  <aside class="notas">(30 segundos) Para confiar en los resultados escribí pruebas automáticas: 55 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honesto: las pruebas cubren los casos que probé, no todos los posibles.</aside>
 </section>
 
 <!-- 14 · PUBLICACIÓN -->
-<section class="lamina hoja" data-titulo="13 · Publicación" data-tiempo="45">
-  <p class="ojo">13 · Publicación</p>
+<section class="lamina hoja" data-titulo="17 · Publicación" data-tiempo="30">
+  <p class="ojo">17 · Publicación</p>
   <h2 class="titulo">Acceso a la aplicación</h2>
   <div style="display:flex; gap:56px; margin-top:44px; align-items:center;">
     <div style="flex:1; display:flex; flex-direction:column; gap:28px;">
@@ -293,7 +431,7 @@
       <p class="nota-mano">¡Escanéenlo y pruébenla!</p>
     </div>
   </div>
-  <aside class="notas">(1 minuto) ¿Cómo se accede? La aplicación está publicada como sitio web, así que se abre desde cualquier navegador o celular sin instalar nada; también la tengo en un solo archivo HTML por si no hay internet. La versión completa, con el servidor en Node y el motor en Rust, es la que se usa para seguir desarrollando. La aplicación está publicada en Vercel en cinemalab-mec115.vercel.app y el código está en GitHub. Cada vez que subo un cambio al repositorio, Vercel vuelve a publicar la página automáticamente. Invitalos a abrirla desde el celular. En la lámina hay un código QR: invitalos a escanearlo.</aside>
+  <aside class="notas">(30 segundos) ¿Cómo se accede? La aplicación está publicada como sitio web, así que se abre desde cualquier navegador o celular sin instalar nada; también la tengo en un solo archivo HTML por si no hay internet. La versión completa, con el servidor en Node y el motor en Rust, es la que se usa para seguir desarrollando. La aplicación está publicada en Vercel en cinemalab-mec115.vercel.app y el código está en GitHub. Cada vez que subo un cambio al repositorio, Vercel vuelve a publicar la página automáticamente. Invitalos a abrirla desde el celular. En la lámina hay un código QR: invitalos a escanearlo.</aside>
 </section>
 
 <!-- 16 · CIERRE -->

@@ -153,3 +153,21 @@ body.control { background: #F2F0E8; min-height: 100%; -webkit-tap-highlight-colo
 .c-ayuda { font-size: 15px; line-height: 1.5; color: var(--texto); }
 .c-ayuda input { font: 700 28px var(--cuerpo); letter-spacing: 6px; width: 100%; padding: 10px; border-radius: 12px; border: 2px solid #CBD7EA; text-align: center; margin: 8px 0; }
 .c-ayuda button { font: 800 18px var(--cuerpo); width: 100%; padding: 14px; border-radius: 12px; border: 0; background: var(--azul); color: #fff; }
+
+/* Bloques de código */
+.codigo { background: #1E2433; color: #E4E8F2; border-radius: 16px; padding: 26px 30px; margin: 0; font: 500 25px/1.5 'JetBrains Mono', 'Cascadia Code', Consolas, 'Courier New', monospace; white-space: pre; box-shadow: 0 14px 34px rgba(27, 35, 51, .25); overflow: hidden; }
+.codigo .c { color: #8A97B5; font-style: italic; }   /* comentario */
+.codigo .k { color: #F4A9C0; }                       /* palabra clave */
+.codigo .s { color: #A8E0A0; }                       /* texto */
+.codigo .n { color: #F4BE57; }                       /* número */
+.codigo .f { color: #8EC8FF; }                       /* función */
+.codigo-titulo { font-size: 22px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--suave); margin: 0 0 10px; }
+.tabla-api { width: 100%; border-collapse: collapse; font-size: 24px; }
+.tabla-api td { padding: 11px 12px; border-bottom: 1.5px dashed #CBD7EA; vertical-align: top; }
+.tabla-api td:first-child { white-space: nowrap; font: 700 22px 'JetBrains Mono', Consolas, monospace; color: var(--azul); }
+.tabla-api .verbo { display: inline-block; min-width: 64px; font-size: 18px; color: #fff; background: #2F855A; border-radius: 6px; padding: 2px 8px; margin-right: 8px; text-align: center; }
+.tabla-api .verbo.post { background: var(--mango); }
+.razon { display: flex; gap: 18px; align-items: flex-start; }
+.razon .circulo { width: 52px; height: 52px; font-size: 28px; }
+.razon h3 { font-family: var(--mano); font-size: 34px; color: var(--tinta); margin: 0; line-height: 1.1; }
+.razon p { font-size: 23px; line-height: 1.4; margin: 4px 0 0; }
