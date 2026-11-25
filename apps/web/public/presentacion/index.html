@@ -373,6 +373,34 @@
 </section>
 
 <!-- 11 · JUEGO (en vivo) -->
+<section class="lamina hoja" data-titulo="14 · Modo clase por dentro (voz)" data-tiempo="45">
+  <p class="ojo">14 · Modo clase por dentro</p>
+  <h2 class="titulo">¿Cómo habla el modo clase?</h2>
+  <p class="bajada">Sin audios grabados ni servicios externos: usa la voz que ya trae el navegador.</p>
+  <div style="display:flex; gap:40px; margin-top:30px; align-items:flex-start;">
+    <div class="entra" style="--i:0; width:1000px;">
+      <p class="codigo-titulo">voz.ts (simplificado)</p>
+<pre class="codigo"><span class="k">function</span> <span class="f">narrar</span>(texto) {
+  <span class="k">const</span> voz = <span class="k">new</span> <span class="f">SpeechSynthesisUtterance</span>(texto);
+  voz.voice = <span class="f">elegirVoz</span>();     <span class="c">// es-SV, es-MX… o español</span>
+  voz.onend = () =&gt; <span class="f">avanzar</span>(); <span class="c">// al terminar, sigue</span>
+  speechSynthesis.<span class="f">speak</span>(voz);  <span class="c">// ¡que hable!</span>
+}
+
+<span class="c">// cada escena trae su texto desde el motor en Rust</span>
+<span class="f">narrar</span>(escena.titulo + <span class="s">'. '</span> + escena.narracion);</pre>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:22px;">
+      <div class="razon paso"><div class="circulo">1</div><div><h3>El texto</h3><p>El motor arma cada escena con su título y su explicación.</p></div></div>
+      <div class="razon paso"><div class="circulo">2</div><div><h3>La voz</h3><p>Busca una voz en español: El Salvador, México o Latinoamérica.</p></div></div>
+      <div class="razon paso"><div class="circulo">3</div><div><h3>Habla</h3><p>El navegador lee el texto en voz alta.</p></div></div>
+      <div class="razon paso"><div class="circulo rojo">4</div><div><h3>Espera</h3><p>La clase no avanza hasta que la voz termina.</p></div></div>
+    </div>
+  </div>
+  <p class="nota-mano paso" style="margin-top:44px;">Ojo: la voz depende del aparato; puede sonar distinta en cada computadora o celular.</p>
+  <aside class="notas">(45 segundos) ¿Y cómo hace para hablar? No usé audios grabados ni ningún servicio de internet: Chrome, Edge y los celulares ya traen una voz que lee texto en voz alta, y la aplicación la aprovecha. Funciona en cuatro pasos. Uno: el motor en Rust arma cada escena con su título y sus frases de explicación. Dos: el programa busca entre las voces instaladas una en español, primero de El Salvador o México. Tres: le entrega el texto al navegador y él lo pronuncia. Cuatro: en modo automático la clase espera a que la voz termine antes de pasar a la siguiente escena, y si uno cambia de escena, la voz anterior se calla. Por eso la voz puede sonar distinta según la computadora o el celular.</aside>
+</section>
+
 <section class="lamina hoja" data-titulo="15 · Juego La hondilla (demo)" data-tiempo="75">
   <p class="ojo">15 · Juego</p>
   <h2 class="titulo">La hondilla: el parabólico jugando</h2>
