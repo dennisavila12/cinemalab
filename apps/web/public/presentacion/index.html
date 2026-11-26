@@ -38,7 +38,7 @@
     <p class="dato entra" style="--i:3">Juan Fernando Morales Fuentes · MF25036</p>
     <p class="dato entra" style="--i:4">Docente: Ing. Gerson Menjívar · Noviembre 2026</p>
   </div>
-  <aside class="notas">(30 segundos · Dennis) Buenos días. Somos Dennis Avila y Juan Fernando Morales. Les vamos a presentar CinemaLab, la aplicación web que desarrollamos para Mecánica Clásica. Yo les voy a explicar cómo está construida y Juan Fernando la física que la sustenta. Es una herramienta interactiva para estudiar el movimiento: resuelve ejercicios de MRU, MRUA y tiro parabólico paso a paso, los simula con animaciones y gráficas, los explica en un modo clase y tiene un juego de hondilla. En los próximos minutos les contamos qué busca resolver, cómo está construida, cómo funciona y cómo la probé.</aside>
+  <aside class="notas">(30 segundos · Dennis) Buenos días. Somos Dennis Avila y Juan Fernando Morales. Les vamos a presentar CinemaLab, la aplicación web que desarrollamos para Mecánica Clásica. Primero yo les explico cómo está construida y se la muestro funcionando; al final Juan Fernando les explica la física que la sustenta. Es una herramienta interactiva para estudiar el movimiento: resuelve ejercicios de MRU, MRUA y tiro parabólico paso a paso, los simula con animaciones y gráficas, los explica en un modo clase y tiene un juego de hondilla. En los próximos minutos les contamos qué busca resolver, cómo está construida, cómo funciona y cómo la probé.</aside>
 </section>
 
 <!-- 2 · PROPÓSITO -->
@@ -254,13 +254,193 @@
       <p style="font-size:24px; line-height:1.4; margin:18px 0 0;">Primero usa los despejes más sencillos (lineales) y deja las raíces para el final.</p>
     </div>
   </div>
-  <aside class="notas">(1 minuto 15 · Dennis) Esta es la parte más importante del código, el solver, y hace lo mismo que hacemos en el cuaderno. Es un ciclo: primero busca una ecuación del modelo donde solo falte una letra; si no hay ninguna, termina. Luego la despeja y calcula; el resultado se guarda como un dato nuevo y se anota el paso para mostrarlo en la hoja. Si un despeje no sirve, por ejemplo porque sale una raíz negativa, lo descarta y prueba otra ecuación. A la derecha se ve cómo está escrita una ecuación en Rust: su fórmula en LaTeX, qué letras usa, y un despeje para cada letra con una prioridad; primero se prefieren los despejes lineales, que son los más sencillos. Esas ecuaciones son física de clase, y para explicarlas le paso la palabra a mi compañero Juan Fernando.</aside>
+  <aside class="notas">(1 minuto 15 · Dennis) Esta es la parte más importante del código, el solver, y hace lo mismo que hacemos en el cuaderno. Es un ciclo: primero busca una ecuación del modelo donde solo falte una letra; si no hay ninguna, termina. Luego la despeja y calcula; el resultado se guarda como un dato nuevo y se anota el paso para mostrarlo en la hoja. Si un despeje no sirve, por ejemplo porque sale una raíz negativa, lo descarta y prueba otra ecuación. A la derecha se ve cómo está escrita una ecuación en Rust: su fórmula en LaTeX, qué letras usa, y un despeje para cada letra con una prioridad; primero se prefieren los despejes lineales, que son los más sencillos. Esas ecuaciones las explicará mi compañero Juan Fernando al final; ahora veamos cómo se comprueba que todo funciona.</aside>
 </section>
 
 <!-- 8 · MÓDULO RESOLVER (en vivo) -->
 
-<section class="lamina hoja" data-titulo="09 · Fundamentos físicos" data-tiempo="45">
-<p class="ojo">09 · Fundamentos físicos</p>
+<section class="lamina hoja" data-titulo="09 · Verificación" data-tiempo="30">
+  <p class="ojo">09 · Verificación</p>
+  <h2 class="titulo">Pruebas realizadas</h2>
+  <div class="fila" style="margin-top:48px;">
+    <div class="tarjeta entra" style="--i:0;"><p class="grande-num" data-contar="55">55</p><p><b>pruebas automáticas</b>, todas pasan: 16 del motor, 10 del servidor y 29 de la interfaz.</p></div>
+    <div class="tarjeta entra" style="--i:1;"><p class="grande-num" data-contar="23">23</p><p><b>pruebas de paridad</b>: la copia sin internet (un solo HTML) da los mismos resultados que el motor en Rust.</p></div>
+    <div class="tarjeta entra" style="--i:2;"><p class="grande-num" style="color:var(--rojo);"><span data-contar="10">10</span>/10</p><p><b>niveles del juego</b> comprobados: cada uno se puede ganar con algún tiro.</p></div>
+  </div>
+  <p class="paso" style="font-size:28px; line-height:1.45; margin:44px 0 0;">Además comparé los ejemplos con ejercicios resueltos a mano. Las pruebas dan confianza en los casos probados, pero no garantizan que no haya errores en todos los casos posibles.</p>
+  <aside class="notas">(30 segundos · Dennis) Para confiar en los resultados escribí pruebas automáticas: 55 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honesto: las pruebas cubren los casos que probé, no todos los posibles.</aside>
+</section>
+
+<!-- 14 · PUBLICACIÓN -->
+
+<section class="lamina hoja" data-titulo="10 · Publicación" data-tiempo="30">
+  <p class="ojo">10 · Publicación</p>
+  <h2 class="titulo">Acceso a la aplicación</h2>
+  <div style="display:flex; gap:56px; margin-top:44px; align-items:center;">
+    <div style="flex:1; display:flex; flex-direction:column; gap:28px;">
+      <div class="tarjeta entra" style="--i:0;"><p class="ojo">Sitio web · Vercel</p><h3>cinemalab-mec115.vercel.app</h3><p>Se abre desde cualquier navegador o celular, sin instalar nada.</p></div>
+      <div class="tarjeta entra" style="--i:1;"><p class="ojo">Código · GitHub</p><h3>github.com/dennisavila12/cinemalab</h3><p>Cada cambio que se sube a GitHub se publica solo en Vercel.</p></div>
+    </div>
+    <div class="entra" style="--i:2; display:flex; flex-direction:column; align-items:center; gap:14px;">
+      <div id="qr-sitio" style="padding:16px; background:#fff; border-radius:20px; box-shadow:0 12px 30px rgba(27,35,51,.18);"></div>
+      <p class="nota-mano">¡Escanéenlo y pruébenla!</p>
+    </div>
+  </div>
+  <aside class="notas">(30 segundos · Dennis) ¿Cómo se accede? La aplicación está publicada como sitio web, así que se abre desde cualquier navegador o celular sin instalar nada; también la tengo en un solo archivo HTML por si no hay internet. La versión completa, con el servidor en Node y el motor en Rust, es la que se usa para seguir desarrollando. La aplicación está publicada en Vercel en cinemalab-mec115.vercel.app y el código está en GitHub. Cada vez que subo un cambio al repositorio, Vercel vuelve a publicar la página automáticamente. Invitalos a abrirla desde el celular para que me sigan, porque ahora se la muestro funcionando. En la lámina hay un código QR: invitalos a escanearlo.</aside>
+</section>
+
+<!-- 16 · CIERRE -->
+
+<section class="lamina hoja" data-titulo="11 · Módulo Resolver (demo en vivo)" data-tiempo="105">
+  <div style="display:flex; gap:44px; align-items:flex-start;">
+    <div style="width:520px; display:flex; flex-direction:column;">
+      <p class="ojo">11 · Módulo Resolver</p>
+      <h2 class="titulo">La solución, como en el cuaderno</h2>
+      <div style="display:flex; flex-direction:column; gap:26px; margin-top:34px;">
+        <div class="entra" style="--i:0;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">A la izquierda, los datos</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Con ? se marcan las incógnitas. Trae ejercicios de ejemplo de aquí.</p></div>
+        <div class="entra" style="--i:1;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">A la derecha, la hoja</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Fórmula, despeje y sustitución; resultado en recuadro y R/.</p></div>
+        <div class="entra" style="--i:2;"><p class="nota-mano" style="font-size:30px;">Probalo aquí mismo: elegí «Frenado en la carretera».</p></div>
+      </div>
+    </div>
+    <div class="vivo" data-src="../index.html#mrua-resolver" style="width:1100px; height:780px; background-image:url(img/resolver_general.png);"><span class="sello">EN VIVO</span></div>
+  </div>
+  <aside class="notas">(1 minuto 45, DEMO en vivo · Dennis) Aquí abro la aplicación. Pestaña MRUA, Resolver ejercicio, ejemplo «Frenado en la carretera»: un pick-up va a 25 metros por segundo y frena en 50 metros. A la izquierda están los datos; la aceleración y el tiempo están marcados como incógnitas. Al darle Resolver y simular, a la derecha sale la hoja: datos, incógnitas en rojo, el paso 1 con la ecuación de velocidad al cuadrado porque no tenemos tiempo, la aceleración da menos 6.25 metros por segundo cuadrado, el signo negativo dice que frena; paso 2, el tiempo da 4 segundos; y abajo la respuesta con R barra. La ventana de la lámina es la aplicación real: se puede usar ahí mismo. Si no hay internet, se ve una captura de respaldo.</aside>
+</section>
+
+<!-- 9 · EXPERIENCIA VISUAL -->
+
+<section class="lamina hoja" data-titulo="12 · Experiencia visual" data-tiempo="45">
+  <p class="ojo">12 · Experiencia visual</p>
+  <h2 class="titulo">¿Qué puede observar el usuario?</h2>
+  <div style="display:flex; gap:32px; margin-top:30px; align-items:flex-start;">
+    <div style="flex:1; display:flex; flex-direction:column; gap:20px;">
+      <img class="captura entra" style="--i:0; width:788px; height:456px;" src="img/simulacion.png" alt="Simulación de tiro parabólico con vectores y panel de valores">
+      <div class="fila paso" style="gap:24px;">
+        <div style="flex:1;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">Animación</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">El objeto se mueve con sus vectores de velocidad.</p></div>
+        <div style="flex:1;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">Panel de valores</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">t, x, y, vx y vy en cada instante.</p></div>
+      </div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:20px;">
+      <img class="captura entra" style="--i:1; width:788px; height:349px;" src="img/graficas.png" alt="Gráfica de trayectoria con pestañas de posición, velocidad y tabla">
+      <div class="paso"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">Gráficas y tabla</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Trayectoria, posición y velocidad contra el tiempo; la tabla se descarga en CSV.</p></div>
+    </div>
+  </div>
+  <aside class="notas">(45 segundos · Dennis) Debajo de la solución está la parte visual. La animación muestra el objeto moviéndose con sus vectores de velocidad: en el parabólico se ve cómo vx no cambia y vy se hace cero en la altura máxima, que la aplicación marca. Se puede pausar y mover el tiempo con la barra, y el panel muestra los valores en ese instante. Al lado, las gráficas: trayectoria, posición contra tiempo y velocidad contra tiempo, más una tabla de valores que se puede descargar.</aside>
+</section>
+
+<!-- 10 · MODO CLASE (en vivo) -->
+
+<section class="lamina hoja" data-titulo="13 · Modo clase (demo)" data-tiempo="60">
+  <p class="ojo">13 · Modo clase</p>
+  <h2 class="titulo">La aplicación explica el tema</h2>
+  <div style="display:flex; gap:40px; margin-top:30px; align-items:flex-start;">
+    <div class="vivo" data-src="../index.html#parabolico-clase" style="width:1250px; height:680px; background-image:url(img/clase_par.png);"><span class="sello">EN VIVO</span></div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:28px;">
+      <div class="entra" style="--i:0;"><p class="mano" style="font-size:36px; font-weight:700; color:var(--azul); margin:0;">Por escenas</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Como diapositivas: la animación muestra lo que dice el texto.</p></div>
+      <div class="entra" style="--i:1;"><p class="mano" style="font-size:36px; font-weight:700; color:var(--azul); margin:0;">En voz alta</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Puede narrar cada escena.</p></div>
+      <div class="entra" style="--i:2;"><p class="mano" style="font-size:36px; font-weight:700; color:var(--azul); margin:0;">Con tus datos</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Explica tu ejercicio, no solo el ejemplo.</p></div>
+    </div>
+  </div>
+  <aside class="notas">(1 minuto, DEMO corta · Dennis) El modo clase es como una presentación dentro de la aplicación. En el parabólico tiene 15 escenas: primero descompone la velocidad, después muestra que en x es un MRU y en y un MRUA, el punto más alto, el tiempo de vuelo, y una escena del mango que se suelta del palo justo cuando pasa la piedra por arriba. Se puede activar la narración en voz alta. Y si antes se resolvió un ejercicio propio, la clase usa esos datos. Mostrá dos o tres escenas, no todas, para cuidar el tiempo. La ventana es la aplicación real: se puede tocar «Siguiente» dentro de ella.</aside>
+</section>
+
+<!-- 11 · JUEGO (en vivo) -->
+
+<section class="lamina hoja" data-titulo="13 · Modo clase por dentro (voz)" data-tiempo="45">
+  <p class="ojo">13 · Modo clase por dentro</p>
+  <h2 class="titulo">¿Cómo habla el modo clase?</h2>
+  <p class="bajada">Sin audios grabados ni servicios externos: usa la voz que ya trae el navegador.</p>
+  <div style="display:flex; gap:40px; margin-top:30px; align-items:flex-start;">
+    <div class="entra" style="--i:0; width:1000px;">
+      <p class="codigo-titulo">voz.ts (simplificado)</p>
+<pre class="codigo"><span class="k">function</span> <span class="f">narrar</span>(texto) {
+  <span class="k">const</span> voz = <span class="k">new</span> <span class="f">SpeechSynthesisUtterance</span>(texto);
+  voz.voice = <span class="f">elegirVoz</span>();     <span class="c">// es-SV, es-MX… o español</span>
+  voz.onend = () =&gt; <span class="f">avanzar</span>(); <span class="c">// al terminar, sigue</span>
+  speechSynthesis.<span class="f">speak</span>(voz);  <span class="c">// ¡que hable!</span>
+}
+
+<span class="c">// cada escena trae su texto desde el motor en Rust</span>
+<span class="f">narrar</span>(escena.titulo + <span class="s">'. '</span> + escena.narracion);</pre>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:22px;">
+      <div class="razon paso"><div class="circulo">1</div><div><h3>El texto</h3><p>El motor arma cada escena con su título y su explicación.</p></div></div>
+      <div class="razon paso"><div class="circulo">2</div><div><h3>La voz</h3><p>Busca una voz en español: El Salvador, México o Latinoamérica.</p></div></div>
+      <div class="razon paso"><div class="circulo">3</div><div><h3>Habla</h3><p>El navegador lee el texto en voz alta.</p></div></div>
+      <div class="razon paso"><div class="circulo rojo">4</div><div><h3>Espera</h3><p>La clase no avanza hasta que la voz termina.</p></div></div>
+    </div>
+  </div>
+  <p class="nota-mano paso" style="margin-top:44px;">Ojo: la voz depende del aparato; puede sonar distinta en cada computadora o celular.</p>
+  <aside class="notas">(45 segundos · Dennis) ¿Y cómo hace para hablar? No usé audios grabados ni ningún servicio de internet: Chrome, Edge y los celulares ya traen una voz que lee texto en voz alta, y la aplicación la aprovecha. Funciona en cuatro pasos. Uno: el motor en Rust arma cada escena con su título y sus frases de explicación. Dos: el programa busca entre las voces instaladas una en español, primero de El Salvador o México. Tres: le entrega el texto al navegador y él lo pronuncia. Cuatro: en modo automático la clase espera a que la voz termine antes de pasar a la siguiente escena, y si uno cambia de escena, la voz anterior se calla. Por eso la voz puede sonar distinta según la computadora o el celular.</aside>
+</section>
+
+<section class="lamina hoja" data-titulo="14 · Juego La hondilla (demo)" data-tiempo="75">
+  <p class="ojo">14 · Juego</p>
+  <h2 class="titulo">La hondilla: el parabólico jugando</h2>
+  <div class="vivo" data-src="../index.html#parabolico-juego" style="width:1600px; height:640px; margin-top:26px; background-image:url(img/juego_mango.png);"><span class="sello">EN VIVO · ¡A jugar!</span></div>
+  <div style="display:flex; gap:20px; margin-top:22px;">
+    <p class="chip entra" style="--i:0">Botá las latas · 5 niveles</p>
+    <p class="chip entra" style="--i:1">Bajá mangos · 3 palos</p>
+    <p class="chip entra" style="--i:2">Hondillazos entre amigos · 2 jugadores</p>
+  </div>
+  <aside class="notas">(1 minuto 15, DEMO con alguien del público · Dennis) Este es el módulo de juego. Uno elige el ángulo y la rapidez y lanza la piedra con la hondilla. Hay tres modos: botar latas en lugares de aquí, como la cancha de la colonia, el parque de Juayúa o el cerro de Apaneca; bajar mangos del palo de la abuela; y hondillazos entre amigos para dos jugadores. Lo importante es que no es solo un juego: después de cada tiro la aplicación explica en una hoja de cuaderno qué pasó, por qué se pasó o se quedó corto. Idea: invitá a un compañero a lanzar una vez antes de explicar la siguiente lámina. La ventana de la lámina es el juego real: se puede lanzar ahí mismo.</aside>
+</section>
+
+<!-- 12 · TIRO PERFECTO -->
+
+<section class="lamina hoja" data-titulo="15 · Juego por dentro" data-tiempo="60">
+  <p class="ojo">15 · Juego por dentro</p>
+  <h2 class="titulo">¿Cómo sugiere el tiro perfecto?</h2>
+  <div style="display:flex; flex-direction:column; gap:30px; margin-top:40px;">
+    <div class="paso" style="display:flex; align-items:center; gap:28px;">
+      <div class="circulo">1</div>
+      <p style="width:560px; font-size:28px; line-height:1.35; color:var(--tinta); margin:0;">En x es un MRU: despejamos el tiempo que tarda en llegar a la distancia d.</p>
+      <img src="img/tdes.png" alt="t = d / (v0 cos θ)" style="height:117px;">
+    </div>
+    <div class="paso" style="display:flex; align-items:center; gap:28px;">
+      <div class="circulo">2</div>
+      <p style="width:560px; font-size:28px; line-height:1.35; color:var(--tinta); margin:0;">Lo sustituimos en la altura del MRUA y queda la ecuación de la trayectoria.</p>
+      <img src="img/tray.png" alt="y(d) = y0 + d tan θ − g d² / (2 v0² cos² θ)" style="height:128px;">
+    </div>
+    <div class="paso" style="display:flex; align-items:center; gap:28px;">
+      <div class="circulo rojo">3</div>
+      <p style="width:560px; font-size:28px; line-height:1.35; color:var(--tinta); margin:0;">Ponemos la posición del mango (d, y) y despejamos la rapidez que hace falta.</p>
+      <div class="caja-roja"><img src="img/v0.png" alt="v0 = d / cos θ · raíz de g / (2 (y0 + d tan θ − y))" style="height:121px; display:block;"></div>
+    </div>
+  </div>
+  <p class="nota-mano paso" style="margin-top:34px;">Palo de la abuela con θ = 45°: la aplicación sugiere v₀ ≈ 14.6 m/s.</p>
+  <aside class="notas">(1 minuto · Dennis) Esta es la parte de física más fuerte de la aplicación. Para que el juego sugiera el tiro perfecto hacemos lo mismo que haríamos en un examen. Uno: en x la velocidad es constante, entonces el tiempo para llegar a una distancia d es d entre v cero coseno de theta. Dos: ese tiempo lo metemos en la ecuación de la altura y se elimina t; queda la ecuación de la trayectoria, una parábola. Tres: ponemos las coordenadas del mango y despejamos v cero. Por ejemplo, para el palo de la abuela con 45 grados da unos 14.6 metros por segundo. Si el resultado de la raíz sale negativo, quiere decir que con ese ángulo no hay manera de llegar, y la aplicación lo avisa.</aside>
+</section>
+
+<!-- CÓDIGO CLAVE: JUEGO -->
+
+<section class="lamina hoja" data-titulo="16 · Código clave: el juego" data-tiempo="45">
+  <p class="ojo">16 · Código clave: el juego</p>
+  <h2 class="titulo">El juego mueve la piedra 240 veces por segundo</h2>
+  <div style="display:flex; gap:40px; margin-top:32px; align-items:flex-start;">
+<pre class="codigo entra" style="--i:0; width:1060px;"><span class="k">const</span> DT: f64 = <span class="n">1.0</span> / <span class="n">240.0</span>;     <span class="c">// paso de tiempo</span>
+<span class="k">loop</span> {
+  <span class="k">let</span> t = i <span class="k">as</span> f64 * DT;
+  <span class="c">// x = x0 + v0x·t     y = y0 + v0y·t − ½·g·t²</span>
+  <span class="k">let</span> (x, y) = <span class="f">posicion</span>(lanzador, angulo, rapidez, t);
+  <span class="k">if</span> <span class="f">toca</span>(lata, x, y)        { golpes.<span class="f">push</span>(lata) }
+  <span class="k">if</span> <span class="f">choca</span>(obstaculo, x, y)  { <span class="k">break</span> } <span class="c">// palo, muro…</span>
+  <span class="k">if</span> y &lt;= <span class="n">0.0</span> &amp;&amp; bajando     { <span class="k">break</span> } <span class="c">// llegó al suelo</span>
+  i += <span class="n">1</span>;
+}</pre>
+    <div style="flex:1; display:flex; flex-direction:column; gap:22px;">
+      <div class="razon paso"><div class="circulo">1</div><div><h3>Las fórmulas de clase</h3><p>La posición sale de las ecuaciones del tiro parabólico.</p></div></div>
+      <div class="razon paso"><div class="circulo">2</div><div><h3>Choques</h3><p>En cada paso revisa si la piedra tocó una lata, un mango o un obstáculo.</p></div></div>
+      <div class="razon paso"><div class="circulo rojo">3</div><div><h3>Explicación</h3><p>Con el resultado, otra parte del motor escribe por qué se pasó o se quedó corto.</p></div></div>
+    </div>
+  </div>
+  <aside class="notas">(45 segundos · Dennis) Y así funciona el juego por dentro. El motor calcula la posición de la piedra 240 veces por segundo usando las mismas fórmulas del tiro parabólico: x igual a v cero x por t, y la altura con menos un medio de g t cuadrado. En cada paso revisa si la piedra tocó una lata o un mango, o si chocó con un palo o un muro, y se detiene cuando llega al suelo. Con ese resultado, otra parte del motor escribe la explicación del tiro en la hoja de cuaderno. Hasta aquí la parte del programa; ahora mi compañero Juan Fernando les explica la física que está detrás de todo lo que acaban de ver.</aside>
+</section>
+
+<!-- 13 · PRUEBAS -->
+
+<section class="lamina hoja" data-titulo="17 · Fundamentos físicos" data-tiempo="45">
+<p class="ojo">17 · Fundamentos físicos</p>
 <h2 class="titulo">¿Qué estudia la cinemática?</h2>
 <p class="bajada">Describe cómo se mueve un objeto, sin preguntarse qué fuerza lo empuja.</p>
 <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:36px;">
@@ -294,11 +474,11 @@
 <p class="nota-mano" style="margin:0;">a constante → <b>MRUA</b></p><p class="nota-mano" style="margin:0; color:var(--suave);">·</p>
 <p class="nota-mano" style="margin:0;">MRU en x + MRUA en y → <b>tiro parabólico</b></p>
 </div>
-  <aside class="notas">(45 segundos · Juan Fernando) Gracias, Dennis. Ahora les explico la física que hay detrás de la aplicación. Todo el proyecto es cinemática: la parte de la mecánica que describe cómo se mueve un objeto, sin preguntarse qué fuerza lo mueve. Usamos seis magnitudes: la posición, que dice dónde está; la distancia recorrida; el tiempo; la velocidad, que es qué tan rápido cambia la posición; la aceleración, qué tan rápido cambia la velocidad; y la gravedad, la aceleración hacia abajo de 9.81 metros por segundo al cuadrado. Según la aceleración hay tres casos: si es cero, es MRU; si es constante, MRUA; y si combinamos los dos, tenemos el tiro parabólico.</aside>
+  <aside class="notas">(45 segundos · Juan Fernando) Gracias, Dennis. Ahora les explico la física que está detrás de todo lo que acaban de ver. Todo el proyecto es cinemática: la parte de la mecánica que describe cómo se mueve un objeto, sin preguntarse qué fuerza lo mueve. Usamos seis magnitudes: la posición, que dice dónde está; la distancia recorrida; el tiempo; la velocidad, que es qué tan rápido cambia la posición; la aceleración, qué tan rápido cambia la velocidad; y la gravedad, la aceleración hacia abajo de 9.81 metros por segundo al cuadrado. Según la aceleración hay tres casos: si es cero, es MRU; si es constante, MRUA; y si combinamos los dos, tenemos el tiro parabólico.</aside>
 </section>
 
-<section class="lamina hoja" data-titulo="10 · MRU" data-tiempo="60">
-<p class="ojo">10 · Movimiento rectilíneo uniforme</p>
+<section class="lamina hoja" data-titulo="18 · MRU" data-tiempo="60">
+<p class="ojo">18 · Movimiento rectilíneo uniforme</p>
 <h2 class="titulo">MRU: la velocidad no cambia</h2>
 <p class="bajada">Se mueve en línea recta y siempre igual de rápido.</p>
 <div style="display:flex; gap:56px; margin-top:34px; align-items:flex-start;">
@@ -339,8 +519,8 @@
   <aside class="notas">(1 minuto · Juan Fernando) El primer caso es el movimiento rectilíneo uniforme, MRU. Tiene dos condiciones: va en línea recta y su velocidad no cambia, por eso la aceleración es cero. Como consecuencia, recorre distancias iguales en tiempos iguales. De ahí sale su única fórmula: distancia igual a velocidad por tiempo. Por ejemplo, un bus que va a 15 metros por segundo durante 8 segundos recorre 120 metros. En las gráficas se reconoce fácil: la posición contra el tiempo es una recta, y su pendiente es la velocidad; la velocidad contra el tiempo es una línea plana, y el área debajo de ella es la distancia recorrida.</aside>
 </section>
 
-<section class="lamina hoja" data-titulo="11 · MRUA" data-tiempo="75">
-<p class="ojo">11 · Movimiento rectilíneo uniformemente acelerado</p>
+<section class="lamina hoja" data-titulo="19 · MRUA" data-tiempo="75">
+<p class="ojo">19 · Movimiento rectilíneo uniformemente acelerado</p>
 <h2 class="titulo">MRUA: la velocidad cambia parejo</h2>
 <p class="bajada">En línea recta y con aceleración constante: si a va en contra de v, frena.</p>
 <div style="display:flex; gap:48px; margin-top:30px; align-items:flex-start;">
@@ -381,8 +561,8 @@
   <aside class="notas">(1 minuto 15 · Juan Fernando) El segundo caso es el MRUA: sigue en línea recta, pero la velocidad cambia, y cambia parejo, porque la aceleración es constante. Si la aceleración va en el mismo sentido que la velocidad, el objeto acelera; si va en contra, frena. Tenemos cuatro fórmulas, y el truco para escoger es ver qué letra no aparece: la primera no tiene distancia, la segunda no tiene velocidad final, la tercera no tiene tiempo y la cuarta no tiene aceleración. Ejemplo: un carro va a 25 metros por segundo y se detiene en 50 metros. Como no conocemos el tiempo, usamos la que no tiene t: la aceleración sale menos 6.25 metros por segundo al cuadrado, y el signo negativo nos dice que va frenando. Con la primera fórmula, el tiempo sale 4 segundos. En la gráfica de velocidad contra tiempo es una recta inclinada: su pendiente es la aceleración y el área debajo son los 50 metros.</aside>
 </section>
 
-<section class="lamina hoja" data-titulo="12 · Tiro parabólico" data-tiempo="60">
-<p class="ojo">12 · Tiro parabólico</p>
+<section class="lamina hoja" data-titulo="20 · Tiro parabólico" data-tiempo="60">
+<p class="ojo">20 · Tiro parabólico</p>
 <h2 class="titulo">Dos movimientos al mismo tiempo</h2>
 <p class="bajada">Lo que pasa en horizontal no afecta lo que pasa en vertical (principio de independencia).</p>
 <div style="display:flex; gap:40px; margin-top:24px; align-items:flex-start;">
@@ -415,8 +595,8 @@
   <aside class="notas">(1 minuto · Juan Fernando) El tercer caso, el tiro parabólico, junta los dos anteriores. La idea clave es el principio de independencia: lo que pasa en horizontal no afecta lo que pasa en vertical. Por eso descomponemos la velocidad inicial en dos partes, con el coseno y el seno del ángulo. En el eje x no hay aceleración, así que es un MRU: las flechas azules miden lo mismo durante todo el vuelo. En el eje y la gravedad lo frena al subir, en el punto más alto la velocidad vertical es cero, y luego lo acelera al bajar: es un MRUA con aceleración menos g. Esos dos movimientos juntos dibujan la parábola. Trabajamos con el modelo ideal, sin resistencia del aire.</aside>
 </section>
 
-<section class="lamina hoja" data-titulo="13 · Tiro parabólico: ecuaciones" data-tiempo="75">
-  <p class="ojo">13 · Tiro parabólico</p>
+<section class="lamina hoja" data-titulo="21 · Tiro parabólico: ecuaciones" data-tiempo="75">
+  <p class="ojo">21 · Tiro parabólico</p>
   <h2 class="titulo">Tiro parabólico: las ecuaciones</h2>
   <p class="bajada">g = 9.81 m/s² · sin resistencia del aire</p>
   <div style="display:flex; gap:36px; margin-top:28px;">
@@ -440,190 +620,10 @@
 <p class="mano" style="font-size:25px; color:var(--tinta); margin:0; line-height:1.5;">v₀ₓ = v₀ᵧ = 20 · 0.707 = 14.14 m/s<br>tₛ = 14.14 ÷ 9.81 = 1.44 s<br>hₘₐₓ = 14.14² ÷ (2 · 9.81) = 10.19 m<br>tᵥ = 2 · tₛ = 2.88 s<br><b style="color:var(--rojo);">R = v₀ₓ · tᵥ ≈ 40.77 m</b></p>
 </div>
   </div>
-  <aside class="notas">(1 minuto 15 · Juan Fernando) De esa idea salen las ecuaciones. Primero descomponemos: la componente horizontal es v cero por coseno del ángulo y la vertical, v cero por seno. Segundo, la subida: en el punto más alto la velocidad vertical es cero, así que el tiempo de subida es v cero y entre g, y la altura máxima es v cero y al cuadrado entre dos g, más la altura inicial si se lanza desde arriba. Tercero, el vuelo: el tiempo de vuelo es cuando la altura vuelve a cero, y el alcance es la velocidad horizontal por ese tiempo. Por ejemplo, una piedra lanzada a 20 metros por segundo con 45 grados sube durante 1.44 segundos, llega a 10.19 metros de altura, pasa 2.88 segundos en el aire y cae a 40.77 metros. Son los mismos cálculos que la aplicación hace paso a paso, como van a ver en la demostración. Con esto le devuelvo la palabra a Dennis.</aside>
+  <aside class="notas">(1 minuto 15 · Juan Fernando) De esa idea salen las ecuaciones. Primero descomponemos: la componente horizontal es v cero por coseno del ángulo y la vertical, v cero por seno. Segundo, la subida: en el punto más alto la velocidad vertical es cero, así que el tiempo de subida es v cero y entre g, y la altura máxima es v cero y al cuadrado entre dos g, más la altura inicial si se lanza desde arriba. Tercero, el vuelo: el tiempo de vuelo es cuando la altura vuelve a cero, y el alcance es la velocidad horizontal por ese tiempo. Por ejemplo, una piedra lanzada a 20 metros por segundo con 45 grados sube durante 1.44 segundos, llega a 10.19 metros de altura, pasa 2.88 segundos en el aire y cae a 40.77 metros. Son los mismos cálculos que la aplicación hizo paso a paso en la demostración.</aside>
 </section>
 
 <!-- 7 · FUNCIONAMIENTO -->
-
-<section class="lamina hoja" data-titulo="14 · Verificación" data-tiempo="30">
-  <p class="ojo">14 · Verificación</p>
-  <h2 class="titulo">Pruebas realizadas</h2>
-  <div class="fila" style="margin-top:48px;">
-    <div class="tarjeta entra" style="--i:0;"><p class="grande-num" data-contar="55">55</p><p><b>pruebas automáticas</b>, todas pasan: 16 del motor, 10 del servidor y 29 de la interfaz.</p></div>
-    <div class="tarjeta entra" style="--i:1;"><p class="grande-num" data-contar="23">23</p><p><b>pruebas de paridad</b>: la copia sin internet (un solo HTML) da los mismos resultados que el motor en Rust.</p></div>
-    <div class="tarjeta entra" style="--i:2;"><p class="grande-num" style="color:var(--rojo);"><span data-contar="10">10</span>/10</p><p><b>niveles del juego</b> comprobados: cada uno se puede ganar con algún tiro.</p></div>
-  </div>
-  <p class="paso" style="font-size:28px; line-height:1.45; margin:44px 0 0;">Además comparé los ejemplos con ejercicios resueltos a mano. Las pruebas dan confianza en los casos probados, pero no garantizan que no haya errores en todos los casos posibles.</p>
-  <aside class="notas">(30 segundos · Dennis) Gracias, Juan Fernando. Para confiar en los resultados escribí pruebas automáticas: 55 en total y todas pasan. Las del motor comparan los resultados con ejercicios resueltos a mano. Hay 23 pruebas que verifican que la versión de un solo HTML calcule exactamente lo mismo que el motor en Rust. Y una prueba recorre los 10 niveles del juego y confirma que todos se pueden ganar. Siendo honesto: las pruebas cubren los casos que probé, no todos los posibles.</aside>
-</section>
-
-<!-- 14 · PUBLICACIÓN -->
-
-<section class="lamina hoja" data-titulo="15 · Publicación" data-tiempo="30">
-  <p class="ojo">15 · Publicación</p>
-  <h2 class="titulo">Acceso a la aplicación</h2>
-  <div style="display:flex; gap:56px; margin-top:44px; align-items:center;">
-    <div style="flex:1; display:flex; flex-direction:column; gap:28px;">
-      <div class="tarjeta entra" style="--i:0;"><p class="ojo">Sitio web · Vercel</p><h3>cinemalab-mec115.vercel.app</h3><p>Se abre desde cualquier navegador o celular, sin instalar nada.</p></div>
-      <div class="tarjeta entra" style="--i:1;"><p class="ojo">Código · GitHub</p><h3>github.com/dennisavila12/cinemalab</h3><p>Cada cambio que se sube a GitHub se publica solo en Vercel.</p></div>
-    </div>
-    <div class="entra" style="--i:2; display:flex; flex-direction:column; align-items:center; gap:14px;">
-      <div id="qr-sitio" style="padding:16px; background:#fff; border-radius:20px; box-shadow:0 12px 30px rgba(27,35,51,.18);"></div>
-      <p class="nota-mano">¡Escanéenlo y pruébenla!</p>
-    </div>
-  </div>
-  <aside class="notas">(30 segundos · Dennis) ¿Cómo se accede? La aplicación está publicada como sitio web, así que se abre desde cualquier navegador o celular sin instalar nada; también la tengo en un solo archivo HTML por si no hay internet. La versión completa, con el servidor en Node y el motor en Rust, es la que se usa para seguir desarrollando. La aplicación está publicada en Vercel en cinemalab-mec115.vercel.app y el código está en GitHub. Cada vez que subo un cambio al repositorio, Vercel vuelve a publicar la página automáticamente. Invitalos a abrirla desde el celular para que me sigan, porque ahora se la muestro funcionando. En la lámina hay un código QR: invitalos a escanearlo.</aside>
-</section>
-
-<!-- 16 · CIERRE -->
-
-<section class="lamina hoja" data-titulo="16 · Módulo Resolver (demo en vivo)" data-tiempo="105">
-  <div style="display:flex; gap:44px; align-items:flex-start;">
-    <div style="width:520px; display:flex; flex-direction:column;">
-      <p class="ojo">16 · Módulo Resolver</p>
-      <h2 class="titulo">La solución, como en el cuaderno</h2>
-      <div style="display:flex; flex-direction:column; gap:26px; margin-top:34px;">
-        <div class="entra" style="--i:0;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">A la izquierda, los datos</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Con ? se marcan las incógnitas. Trae ejercicios de ejemplo de aquí.</p></div>
-        <div class="entra" style="--i:1;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">A la derecha, la hoja</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Fórmula, despeje y sustitución; resultado en recuadro y R/.</p></div>
-        <div class="entra" style="--i:2;"><p class="nota-mano" style="font-size:30px;">Probalo aquí mismo: elegí «Frenado en la carretera».</p></div>
-      </div>
-    </div>
-    <div class="vivo" data-src="../index.html#mrua-resolver" style="width:1100px; height:780px; background-image:url(img/resolver_general.png);"><span class="sello">EN VIVO</span></div>
-  </div>
-  <aside class="notas">(1 minuto 45, DEMO en vivo · Dennis) Aquí abro la aplicación. Pestaña MRUA, Resolver ejercicio, ejemplo «Frenado en la carretera»: un pick-up va a 25 metros por segundo y frena en 50 metros. A la izquierda están los datos; la aceleración y el tiempo están marcados como incógnitas. Al darle Resolver y simular, a la derecha sale la hoja: datos, incógnitas en rojo, el paso 1 con la ecuación de velocidad al cuadrado porque no tenemos tiempo, la aceleración da menos 6.25 metros por segundo cuadrado, el signo negativo dice que frena; paso 2, el tiempo da 4 segundos; y abajo la respuesta con R barra. La ventana de la lámina es la aplicación real: se puede usar ahí mismo. Si no hay internet, se ve una captura de respaldo.</aside>
-</section>
-
-<!-- 9 · EXPERIENCIA VISUAL -->
-
-<section class="lamina hoja" data-titulo="17 · Experiencia visual" data-tiempo="45">
-  <p class="ojo">17 · Experiencia visual</p>
-  <h2 class="titulo">¿Qué puede observar el usuario?</h2>
-  <div style="display:flex; gap:32px; margin-top:30px; align-items:flex-start;">
-    <div style="flex:1; display:flex; flex-direction:column; gap:20px;">
-      <img class="captura entra" style="--i:0; width:788px; height:456px;" src="img/simulacion.png" alt="Simulación de tiro parabólico con vectores y panel de valores">
-      <div class="fila paso" style="gap:24px;">
-        <div style="flex:1;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">Animación</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">El objeto se mueve con sus vectores de velocidad.</p></div>
-        <div style="flex:1;"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">Panel de valores</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">t, x, y, vx y vy en cada instante.</p></div>
-      </div>
-    </div>
-    <div style="flex:1; display:flex; flex-direction:column; gap:20px;">
-      <img class="captura entra" style="--i:1; width:788px; height:349px;" src="img/graficas.png" alt="Gráfica de trayectoria con pestañas de posición, velocidad y tabla">
-      <div class="paso"><p class="mano" style="font-size:34px; font-weight:700; color:var(--azul); margin:0;">Gráficas y tabla</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Trayectoria, posición y velocidad contra el tiempo; la tabla se descarga en CSV.</p></div>
-    </div>
-  </div>
-  <aside class="notas">(45 segundos · Dennis) Debajo de la solución está la parte visual. La animación muestra el objeto moviéndose con sus vectores de velocidad: en el parabólico se ve cómo vx no cambia y vy se hace cero en la altura máxima, que la aplicación marca. Se puede pausar y mover el tiempo con la barra, y el panel muestra los valores en ese instante. Al lado, las gráficas: trayectoria, posición contra tiempo y velocidad contra tiempo, más una tabla de valores que se puede descargar.</aside>
-</section>
-
-<!-- 10 · MODO CLASE (en vivo) -->
-
-<section class="lamina hoja" data-titulo="18 · Modo clase (demo)" data-tiempo="60">
-  <p class="ojo">18 · Modo clase</p>
-  <h2 class="titulo">La aplicación explica el tema</h2>
-  <div style="display:flex; gap:40px; margin-top:30px; align-items:flex-start;">
-    <div class="vivo" data-src="../index.html#parabolico-clase" style="width:1250px; height:680px; background-image:url(img/clase_par.png);"><span class="sello">EN VIVO</span></div>
-    <div style="flex:1; display:flex; flex-direction:column; gap:28px;">
-      <div class="entra" style="--i:0;"><p class="mano" style="font-size:36px; font-weight:700; color:var(--azul); margin:0;">Por escenas</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Como diapositivas: la animación muestra lo que dice el texto.</p></div>
-      <div class="entra" style="--i:1;"><p class="mano" style="font-size:36px; font-weight:700; color:var(--azul); margin:0;">En voz alta</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Puede narrar cada escena.</p></div>
-      <div class="entra" style="--i:2;"><p class="mano" style="font-size:36px; font-weight:700; color:var(--azul); margin:0;">Con tus datos</p><p style="font-size:25px; line-height:1.35; margin:4px 0 0;">Explica tu ejercicio, no solo el ejemplo.</p></div>
-    </div>
-  </div>
-  <aside class="notas">(1 minuto, DEMO corta · Dennis) El modo clase es como una presentación dentro de la aplicación. En el parabólico tiene 15 escenas: primero descompone la velocidad, después muestra que en x es un MRU y en y un MRUA, el punto más alto, el tiempo de vuelo, y una escena del mango que se suelta del palo justo cuando pasa la piedra por arriba. Se puede activar la narración en voz alta. Y si antes se resolvió un ejercicio propio, la clase usa esos datos. Mostrá dos o tres escenas, no todas, para cuidar el tiempo. La ventana es la aplicación real: se puede tocar «Siguiente» dentro de ella.</aside>
-</section>
-
-<!-- 11 · JUEGO (en vivo) -->
-
-<section class="lamina hoja" data-titulo="18 · Modo clase por dentro (voz)" data-tiempo="45">
-  <p class="ojo">18 · Modo clase por dentro</p>
-  <h2 class="titulo">¿Cómo habla el modo clase?</h2>
-  <p class="bajada">Sin audios grabados ni servicios externos: usa la voz que ya trae el navegador.</p>
-  <div style="display:flex; gap:40px; margin-top:30px; align-items:flex-start;">
-    <div class="entra" style="--i:0; width:1000px;">
-      <p class="codigo-titulo">voz.ts (simplificado)</p>
-<pre class="codigo"><span class="k">function</span> <span class="f">narrar</span>(texto) {
-  <span class="k">const</span> voz = <span class="k">new</span> <span class="f">SpeechSynthesisUtterance</span>(texto);
-  voz.voice = <span class="f">elegirVoz</span>();     <span class="c">// es-SV, es-MX… o español</span>
-  voz.onend = () =&gt; <span class="f">avanzar</span>(); <span class="c">// al terminar, sigue</span>
-  speechSynthesis.<span class="f">speak</span>(voz);  <span class="c">// ¡que hable!</span>
-}
-
-<span class="c">// cada escena trae su texto desde el motor en Rust</span>
-<span class="f">narrar</span>(escena.titulo + <span class="s">'. '</span> + escena.narracion);</pre>
-    </div>
-    <div style="flex:1; display:flex; flex-direction:column; gap:22px;">
-      <div class="razon paso"><div class="circulo">1</div><div><h3>El texto</h3><p>El motor arma cada escena con su título y su explicación.</p></div></div>
-      <div class="razon paso"><div class="circulo">2</div><div><h3>La voz</h3><p>Busca una voz en español: El Salvador, México o Latinoamérica.</p></div></div>
-      <div class="razon paso"><div class="circulo">3</div><div><h3>Habla</h3><p>El navegador lee el texto en voz alta.</p></div></div>
-      <div class="razon paso"><div class="circulo rojo">4</div><div><h3>Espera</h3><p>La clase no avanza hasta que la voz termina.</p></div></div>
-    </div>
-  </div>
-  <p class="nota-mano paso" style="margin-top:44px;">Ojo: la voz depende del aparato; puede sonar distinta en cada computadora o celular.</p>
-  <aside class="notas">(45 segundos · Dennis) ¿Y cómo hace para hablar? No usé audios grabados ni ningún servicio de internet: Chrome, Edge y los celulares ya traen una voz que lee texto en voz alta, y la aplicación la aprovecha. Funciona en cuatro pasos. Uno: el motor en Rust arma cada escena con su título y sus frases de explicación. Dos: el programa busca entre las voces instaladas una en español, primero de El Salvador o México. Tres: le entrega el texto al navegador y él lo pronuncia. Cuatro: en modo automático la clase espera a que la voz termine antes de pasar a la siguiente escena, y si uno cambia de escena, la voz anterior se calla. Por eso la voz puede sonar distinta según la computadora o el celular.</aside>
-</section>
-
-<section class="lamina hoja" data-titulo="19 · Juego La hondilla (demo)" data-tiempo="75">
-  <p class="ojo">19 · Juego</p>
-  <h2 class="titulo">La hondilla: el parabólico jugando</h2>
-  <div class="vivo" data-src="../index.html#parabolico-juego" style="width:1600px; height:640px; margin-top:26px; background-image:url(img/juego_mango.png);"><span class="sello">EN VIVO · ¡A jugar!</span></div>
-  <div style="display:flex; gap:20px; margin-top:22px;">
-    <p class="chip entra" style="--i:0">Botá las latas · 5 niveles</p>
-    <p class="chip entra" style="--i:1">Bajá mangos · 3 palos</p>
-    <p class="chip entra" style="--i:2">Hondillazos entre amigos · 2 jugadores</p>
-  </div>
-  <aside class="notas">(1 minuto 15, DEMO con alguien del público · Dennis) Este es el módulo de juego. Uno elige el ángulo y la rapidez y lanza la piedra con la hondilla. Hay tres modos: botar latas en lugares de aquí, como la cancha de la colonia, el parque de Juayúa o el cerro de Apaneca; bajar mangos del palo de la abuela; y hondillazos entre amigos para dos jugadores. Lo importante es que no es solo un juego: después de cada tiro la aplicación explica en una hoja de cuaderno qué pasó, por qué se pasó o se quedó corto. Idea: invitá a un compañero a lanzar una vez antes de explicar la siguiente lámina. La ventana de la lámina es el juego real: se puede lanzar ahí mismo.</aside>
-</section>
-
-<!-- 12 · TIRO PERFECTO -->
-
-<section class="lamina hoja" data-titulo="20 · Juego por dentro" data-tiempo="60">
-  <p class="ojo">20 · Juego por dentro</p>
-  <h2 class="titulo">¿Cómo sugiere el tiro perfecto?</h2>
-  <div style="display:flex; flex-direction:column; gap:30px; margin-top:40px;">
-    <div class="paso" style="display:flex; align-items:center; gap:28px;">
-      <div class="circulo">1</div>
-      <p style="width:560px; font-size:28px; line-height:1.35; color:var(--tinta); margin:0;">En x es un MRU: despejamos el tiempo que tarda en llegar a la distancia d.</p>
-      <img src="img/tdes.png" alt="t = d / (v0 cos θ)" style="height:117px;">
-    </div>
-    <div class="paso" style="display:flex; align-items:center; gap:28px;">
-      <div class="circulo">2</div>
-      <p style="width:560px; font-size:28px; line-height:1.35; color:var(--tinta); margin:0;">Lo sustituimos en la altura del MRUA y queda la ecuación de la trayectoria.</p>
-      <img src="img/tray.png" alt="y(d) = y0 + d tan θ − g d² / (2 v0² cos² θ)" style="height:128px;">
-    </div>
-    <div class="paso" style="display:flex; align-items:center; gap:28px;">
-      <div class="circulo rojo">3</div>
-      <p style="width:560px; font-size:28px; line-height:1.35; color:var(--tinta); margin:0;">Ponemos la posición del mango (d, y) y despejamos la rapidez que hace falta.</p>
-      <div class="caja-roja"><img src="img/v0.png" alt="v0 = d / cos θ · raíz de g / (2 (y0 + d tan θ − y))" style="height:121px; display:block;"></div>
-    </div>
-  </div>
-  <p class="nota-mano paso" style="margin-top:34px;">Palo de la abuela con θ = 45°: la aplicación sugiere v₀ ≈ 14.6 m/s.</p>
-  <aside class="notas">(1 minuto · Dennis) Esta es la parte de física más fuerte de la aplicación. Para que el juego sugiera el tiro perfecto hacemos lo mismo que haríamos en un examen. Uno: en x la velocidad es constante, entonces el tiempo para llegar a una distancia d es d entre v cero coseno de theta. Dos: ese tiempo lo metemos en la ecuación de la altura y se elimina t; queda la ecuación de la trayectoria, una parábola. Tres: ponemos las coordenadas del mango y despejamos v cero. Por ejemplo, para el palo de la abuela con 45 grados da unos 14.6 metros por segundo. Si el resultado de la raíz sale negativo, quiere decir que con ese ángulo no hay manera de llegar, y la aplicación lo avisa.</aside>
-</section>
-
-<!-- CÓDIGO CLAVE: JUEGO -->
-
-<section class="lamina hoja" data-titulo="21 · Código clave: el juego" data-tiempo="45">
-  <p class="ojo">21 · Código clave: el juego</p>
-  <h2 class="titulo">El juego mueve la piedra 240 veces por segundo</h2>
-  <div style="display:flex; gap:40px; margin-top:32px; align-items:flex-start;">
-<pre class="codigo entra" style="--i:0; width:1060px;"><span class="k">const</span> DT: f64 = <span class="n">1.0</span> / <span class="n">240.0</span>;     <span class="c">// paso de tiempo</span>
-<span class="k">loop</span> {
-  <span class="k">let</span> t = i <span class="k">as</span> f64 * DT;
-  <span class="c">// x = x0 + v0x·t     y = y0 + v0y·t − ½·g·t²</span>
-  <span class="k">let</span> (x, y) = <span class="f">posicion</span>(lanzador, angulo, rapidez, t);
-  <span class="k">if</span> <span class="f">toca</span>(lata, x, y)        { golpes.<span class="f">push</span>(lata) }
-  <span class="k">if</span> <span class="f">choca</span>(obstaculo, x, y)  { <span class="k">break</span> } <span class="c">// palo, muro…</span>
-  <span class="k">if</span> y &lt;= <span class="n">0.0</span> &amp;&amp; bajando     { <span class="k">break</span> } <span class="c">// llegó al suelo</span>
-  i += <span class="n">1</span>;
-}</pre>
-    <div style="flex:1; display:flex; flex-direction:column; gap:22px;">
-      <div class="razon paso"><div class="circulo">1</div><div><h3>Las fórmulas de clase</h3><p>La posición sale de las ecuaciones del tiro parabólico.</p></div></div>
-      <div class="razon paso"><div class="circulo">2</div><div><h3>Choques</h3><p>En cada paso revisa si la piedra tocó una lata, un mango o un obstáculo.</p></div></div>
-      <div class="razon paso"><div class="circulo rojo">3</div><div><h3>Explicación</h3><p>Con el resultado, otra parte del motor escribe por qué se pasó o se quedó corto.</p></div></div>
-    </div>
-  </div>
-  <aside class="notas">(45 segundos · Dennis) Y así funciona el juego por dentro. El motor calcula la posición de la piedra 240 veces por segundo usando las mismas fórmulas del tiro parabólico: x igual a v cero x por t, y la altura con menos un medio de g t cuadrado. En cada paso revisa si la piedra tocó una lata o un mango, o si chocó con un palo o un muro, y se detiene cuando llega al suelo. Con ese resultado, otra parte del motor escribe la explicación del tiro en la hoja de cuaderno.</aside>
-</section>
-
-<!-- 13 · PRUEBAS -->
 
 <section class="lamina pizarra" data-titulo="Cierre" data-tiempo="30">
   <div class="trazo" style="left:1032px; top:560px; width:760px; height:360px;">
@@ -639,7 +639,7 @@
     <p class="sub entra" style="--i:2">CinemaLab integra física, programación y visualización: el procedimiento del cuaderno, animado y jugable.</p>
   </div>
   <p class="dato" style="position:absolute; left:128px; bottom:96px;">Pruébenla: cinemalab-mec115.vercel.app</p>
-  <aside class="notas">(30 segundos · Dennis) Para cerrar: con CinemaLab quise pasar de la fórmula al hondillazo. La aplicación resuelve como en el cuaderno, lo explica y lo convierte en juego. Muchas gracias por su atención. Si sobra tiempo, invitá al docente a lanzar un hondillazo.</aside>
+  <aside class="notas">(30 segundos · Juan Fernando) Para cerrar: con CinemaLab quisimos pasar de la fórmula al hondillazo. La aplicación resuelve como en el cuaderno, lo explica y lo convierte en juego. Muchas gracias por su atención. Si sobra tiempo, inviten al docente a lanzar un hondillazo.</aside>
 </section>
 
 </div>
