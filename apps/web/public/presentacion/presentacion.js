@@ -41,6 +41,7 @@
     const pasos = (l) => Array.from(l.querySelectorAll('.paso'));
     const pasoActual = () => pasos(laminas[actual]).filter((p) => p.classList.contains('visible')).length;
     const notas = (l) => (l.querySelector('.notas')?.textContent || '').replace(/\s+/g, ' ').trim();
+    const apoyo = (l) => Array.from(l.querySelectorAll('.apoyo p')).map((p) => { const b = p.querySelector('b'); const ti = b ? b.textContent : ''; return { t: ti, d: p.textContent.slice(ti.length).replace(/\s+/g, ' ').trim() }; });
 
     function activar(l) {
       // Ventanas de la app en vivo: se cargan la primera vez que se muestra la lámina
@@ -128,7 +129,7 @@
       const l = laminas[actual], p = pasos(l);
       return {
         t: 'estado', i: actual, total, titulo: l.dataset.titulo, tiempo: +l.dataset.tiempo || 60,
-        notas: notas(l), paso: pasoActual(), pasos: p.length,
+        notas: notas(l), apoyo: apoyo(l), paso: pasoActual(), pasos: p.length,
         siguiente: actual < total - 1 ? laminas[actual + 1].dataset.titulo : null,
         lista: laminas.map((x) => x.dataset.titulo),
       };
@@ -238,6 +239,7 @@
           <div class="c-reloj" id="r-total"><span>Total</span><b>0:00</b></div>
         </div>
         <div class="c-tarjeta"><p class="c-notas-titulo">Qué decir</p><p class="c-notas">${esc(e.notas || 'Sin notas para esta lámina.')}</p></div>
+        ${e.apoyo && e.apoyo.length ? `<div class="c-tarjeta c-apoyo"><p class="c-notas-titulo">Si te preguntan</p>${e.apoyo.map((x) => `<p class="c-ap"><b>${esc(x.t)}</b>${esc(x.d)}</p>`).join('')}</div>` : ''}
         <div class="c-tarjeta c-sig">${e.siguiente ? `Después viene: <b>${esc(e.siguiente)}</b>` : '<b>Es la última lámina.</b>'}</div>
         <div class="c-acciones">
           <button type="button" id="c-lista-btn">${listaAbierta ? 'Ocultar' : 'Ver'} todas las láminas</button>

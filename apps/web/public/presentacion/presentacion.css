@@ -34,7 +34,7 @@ body.presentador { background: #0E1714; overflow: hidden; }
 }
 .lamina.activa { opacity: 1; visibility: visible; transform: none; transition: opacity .55s ease, transform .55s cubic-bezier(.2, 0, 0, 1), visibility 0s; }
 .lamina.atras { transform: translateX(-60px); }
-.lamina > .notas { display: none; }
+.lamina > .notas, .lamina > .apoyo { display: none; }
 
 .hoja { background: repeating-linear-gradient(180deg, #FBFAF4 0px, #FBFAF4 46px, #DDE6F2 46px, #DDE6F2 48px); }
 .hoja::before { content: ""; position: absolute; left: 136px; top: 0; bottom: 0; width: 3px; background: var(--margen); }
@@ -171,3 +171,8 @@ body.control { background: #F2F0E8; min-height: 100%; -webkit-tap-highlight-colo
 .razon .circulo { width: 52px; height: 52px; font-size: 28px; }
 .razon h3 { font-family: var(--mano); font-size: 34px; color: var(--tinta); margin: 0; line-height: 1.1; }
 .razon p { font-size: 23px; line-height: 1.4; margin: 4px 0 0; }
+
+.c-apoyo { border-color: #C9D5EE; background: #F6F9FF; }
+.c-ap { font-size: 17px; line-height: 1.5; color: var(--tinta); margin: 0 0 12px; }
+.c-ap:last-child { margin-bottom: 0; }
+.c-ap b { display: block; color: var(--azul); font-size: 18px; margin-bottom: 2px; }

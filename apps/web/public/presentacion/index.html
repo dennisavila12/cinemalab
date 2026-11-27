@@ -122,6 +122,7 @@
   </div>
   <p class="nota-mano paso" style="margin-top:44px;">En la web publicada, el mismo motor en Rust corre dentro del navegador, compilado a WebAssembly.</p>
   <aside class="notas">(1 minuto · Dennis) Por dentro el proyecto tiene tres capas. La interfaz, hecha en React con TypeScript, es lo que el usuario ve: formularios, animaciones y gráficas. En el medio un servidor en Node.js que recibe el ejercicio, valida los datos y se lo pasa al motor. Y el motor, hecho en Rust, es donde está toda la física: las ecuaciones, el despeje y la simulación. La regla que seguí es que la física solo está en el motor; la interfaz nunca hace cálculos, solo dibuja lo que el motor responde. Así, si una fórmula está bien en el motor, está bien en toda la aplicación. En la página publicada, ese mismo motor en Rust se compila a WebAssembly y corre dentro del navegador, así que no hace falta servidor. También tengo una copia en un solo archivo HTML para usarla sin internet.</aside>
+  <aside class="apoyo"><p><b>React + TypeScript</b>React es una librería para armar la pantalla con piezas reutilizables llamadas componentes (el formulario, la hoja, la gráfica). TypeScript es JavaScript con tipos: si por error mando un texto donde va un número, me avisa antes de ejecutar. Juntos hacen la interfaz.</p><p><b>Node.js</b>Permite ejecutar JavaScript fuera del navegador, en un servidor. Ahí vive la API.</p><p><b>Rust</b>Lenguaje compilado: se traduce a código de máquina, por eso es muy rápido. Es muy estricto: no deja compilar si hay errores comunes de memoria. Ahí está toda la física.</p><p><b>WebAssembly (WASM)</b>Formato que permite correr código compilado, como Rust, dentro del navegador casi a la misma velocidad que un programa normal. Así la página publicada usa el mismo motor sin necesitar servidor.</p></aside>
 </section>
 
 <!-- ESTRUCTURA DEL CÓDIGO -->
@@ -147,6 +148,7 @@
     </div>
   </div>
   <aside class="notas">(1 minuto · Dennis) Así está organizado el código. Es un solo repositorio, un monorepo, con seis piezas. En la carpeta crates está lo que está en Rust: fisica-core es el motor con toda la física; fisica-node y fisica-wasm son dos puentes para usar ese mismo motor desde el servidor o desde el navegador. En apps está lo de TypeScript: la API con Fastify y la interfaz con React. Y en packages están los contratos, es decir, la forma exacta del JSON que viaja entre las piezas, con su validación. Seguí tres principios: capas separadas, un solo contrato y un motor sin estado, que recibe un ejercicio y devuelve la solución sin guardar nada, por eso es fácil de probar.</aside>
+  <aside class="apoyo"><p><b>Node con napi-rs</b>napi-rs es un puente: convierte el motor de Rust en un módulo que Node.js puede usar como si fuera una librería de JavaScript (fisica-node). Así la API llama a Rust directamente, sin copiar las fórmulas.</p><p><b>fisica-wasm</b>El otro puente: el mismo motor compilado a WebAssembly para el navegador.</p><p><b>Monorepo y crate</b>Monorepo: un solo repositorio con todas las piezas. Crate: así se llama un paquete de código en Rust.</p></aside>
 </section>
 
 <!-- POR QUÉ UNA API -->
@@ -174,6 +176,7 @@
     </div>
   </div>
   <aside class="notas">(1 minuto 15 · Dennis) ¿Por qué usé una API? Una API es como un contrato: define qué se le puede pedir al sistema y qué responde. Le encontré cuatro ventajas. Uno, separa responsabilidades: la pantalla no sabe nada de física y el motor no sabe nada de pantallas. Dos, sirve para cualquier cliente: hoy la usa la página web, pero mañana una app de celular podría pedir exactamente lo mismo. Tres, valida en la entrada: si llega un dato mal escrito, la API lo rechaza con un error 400 antes de que llegue al motor. Y cuatro, se prueba por separado: la API tiene sus propias 10 pruebas. A la derecha están las seis rutas: GET para consultar, como los modelos o los niveles, y POST para mandar datos y que el motor calcule, como resolver un ejercicio o simular un tiro.</aside>
+  <aside class="apoyo"><p><b>¿Qué es una API?</b>Interfaz de programación de aplicaciones: las reglas de cómo un programa le pide algo a otro y qué le responde. Como un mesero: la pantalla pide, la API lleva el pedido al motor (la cocina) y trae el resultado.</p><p><b>Fastify</b>Herramienta de Node.js para crear el servidor y sus rutas, por ejemplo POST /api/resolver. Se eligió porque es de las más rápidas y sencillas.</p><p><b>zod</b>Librería que describe cómo deben venir los datos (qué campos, qué tipo, qué valores) y rechaza lo que no cumple. Si alguien manda v0 = «veinte», zod lo detiene y la API responde error 400 antes de llegar al motor.</p><p><b>GET y POST</b>GET pide información (consultar). POST manda datos para que se procesen (calcular).</p></aside>
 </section>
 
 <!-- ASÍ VIAJA UN EJERCICIO -->
@@ -213,6 +216,7 @@
     </div>
   </div>
   <aside class="notas">(1 minuto · Dennis) Así viaja un ejercicio, con el ejemplo del pick-up. Uno: la interfaz manda un JSON a la ruta resolver con el modelo, los datos y las incógnitas. Dos: la API valida ese JSON y se lo pasa al motor; son solo dos líneas de código. Tres: el motor responde con los valores, los pasos ya escritos —la ecuación, el despeje, la sustitución y el resultado— y 601 puntos de la simulación. Cuatro: la interfaz solo dibuja la hoja de cuaderno y la animación con esos datos. En la página publicada el mismo JSON va directo al motor compilado a WebAssembly dentro del navegador, sin pasar por internet.</aside>
+  <aside class="apoyo"><p><b>① Los números que se mandan</b>&quot;modelo&quot;: &quot;mrua&quot; dice qué movimiento es. En &quot;datos&quot;: v0 = 25 es la velocidad inicial en m/s, v = 0 la velocidad final (se detiene) y dx = 50 la distancia en metros (dx es el nombre interno de d). En &quot;incognitas&quot;: a y t, lo que pide el problema.</p><p><b>② La API</b>app.post(&#x27;/resolver&#x27;) crea la ruta. validar(EntradaResolver, req.body) revisa con zod que los datos estén bien. motor.resolver(...) se los pasa al motor en Rust.</p><p><b>③ Lo que responde</b>&quot;valores&quot;: a = −6.25 m/s² (negativa porque frena) y t = 4 s. Cada paso trae la ecuación que usó (v² = v0² + 2ad, porque no tiene t), el despeje, la sustitución con los números y el resultado: lo mismo que se escribe en el cuaderno.</p><p><b>601 puntos</b>La simulación parte los 4 segundos en 600 tramos: son 601 instantes, cada uno con su posición, velocidad y aceleración. Con eso se dibujan la animación y las gráficas.</p></aside>
 </section>
 
 <!-- CÓDIGO CLAVE: SOLVER -->
@@ -255,6 +259,7 @@
     </div>
   </div>
   <aside class="notas">(1 minuto 15 · Dennis) Esta es la parte más importante del código, el solver, y hace lo mismo que hacemos en el cuaderno. Es un ciclo: primero busca una ecuación del modelo donde solo falte una letra; si no hay ninguna, termina. Luego la despeja y calcula; el resultado se guarda como un dato nuevo y se anota el paso para mostrarlo en la hoja. Si un despeje no sirve, por ejemplo porque sale una raíz negativa, lo descarta y prueba otra ecuación. A la derecha se ve cómo está escrita una ecuación en Rust: su fórmula en LaTeX, qué letras usa, y un despeje para cada letra con una prioridad; primero se prefieren los despejes lineales, que son los más sencillos. Esas ecuaciones las explicará mi compañero Juan Fernando al final; ahora veamos cómo se comprueba que todo funciona.</aside>
+  <aside class="apoyo"><p><b>El ciclo (izquierda)</b>loop repite. buscar(...) encuentra una ecuación donde falte una sola letra; si no hay, break termina. (forma.f)(&amp;valores) calcula esa letra con los números conocidos. Si sale bien, valores.insert guarda el dato nuevo y pasos.push anota el paso para la hoja. Si sale imposible (raíz negativa o tiempo negativo), descartar y prueba otra ecuación.</p><p><b>La ecuación (derecha)</b>latex: la fórmula escrita en LaTeX para dibujarla bonita. vars: las letras que aparecen (v, v0, a, d). despejes: una fórmula ya despejada para cada letra.</p><p><b>El despeje de a</b>var: &quot;a&quot; es la letra que despeja. prioridad: 1 significa que es sencillo (lineal), así que se prefiere. f: |v| (v² − v0²)/(2·d) es una función corta que recibe los valores y calcula a. Con v = 0, v0 = 25 y d = 50: (0 − 625)/100 = −6.25 m/s².</p><p><b>LaTeX</b>Lenguaje para escribir fórmulas matemáticas como texto, por ejemplo v^2 = v_0^2 + 2ad. El motor guarda cada fórmula así y KaTeX la dibuja en pantalla.</p></aside>
 </section>
 
 <!-- 8 · MÓDULO RESOLVER (en vivo) -->
@@ -305,6 +310,7 @@
     <div class="vivo" data-src="../index.html#mrua-resolver" style="width:1100px; height:780px; background-image:url(img/resolver_general.png);"><span class="sello">EN VIVO</span></div>
   </div>
   <aside class="notas">(1 minuto 45, DEMO en vivo · Dennis) Aquí abro la aplicación. Pestaña MRUA, Resolver ejercicio, ejemplo «Frenado en la carretera»: un pick-up va a 25 metros por segundo y frena en 50 metros. A la izquierda están los datos; la aceleración y el tiempo están marcados como incógnitas. Al darle Resolver y simular, a la derecha sale la hoja: datos, incógnitas en rojo, el paso 1 con la ecuación de velocidad al cuadrado porque no tenemos tiempo, la aceleración da menos 6.25 metros por segundo cuadrado, el signo negativo dice que frena; paso 2, el tiempo da 4 segundos; y abajo la respuesta con R barra. La ventana de la lámina es la aplicación real: se puede usar ahí mismo. Si no hay internet, se ve una captura de respaldo.</aside>
+  <aside class="apoyo"><p><b>KaTeX</b>Librería que toma fórmulas escritas en LaTeX y las dibuja en la página con calidad de libro, muy rápido. Por eso la hoja se ve como el cuaderno.</p></aside>
 </section>
 
 <!-- 9 · EXPERIENCIA VISUAL -->
@@ -326,6 +332,7 @@
     </div>
   </div>
   <aside class="notas">(45 segundos · Dennis) Debajo de la solución está la parte visual. La animación muestra el objeto moviéndose con sus vectores de velocidad: en el parabólico se ve cómo vx no cambia y vy se hace cero en la altura máxima, que la aplicación marca. Se puede pausar y mover el tiempo con la barra, y el panel muestra los valores en ese instante. Al lado, las gráficas: trayectoria, posición contra tiempo y velocidad contra tiempo, más una tabla de valores que se puede descargar.</aside>
+  <aside class="apoyo"><p><b>Canvas</b>Es un lienzo de la página web donde se dibuja con código, punto por punto y cuadro por cuadro. Ahí se dibujan la animación del movimiento, las flechas de los vectores, las gráficas y el juego.</p><p><b>CSV</b>Archivo de tabla que se abre en Excel; el botón descarga los datos de la simulación.</p></aside>
 </section>
 
 <!-- 10 · MODO CLASE (en vivo) -->
@@ -435,6 +442,7 @@
     </div>
   </div>
   <aside class="notas">(45 segundos · Dennis) Y así funciona el juego por dentro. El motor calcula la posición de la piedra 240 veces por segundo usando las mismas fórmulas del tiro parabólico: x igual a v cero x por t, y la altura con menos un medio de g t cuadrado. En cada paso revisa si la piedra tocó una lata o un mango, o si chocó con un palo o un muro, y se detiene cuando llega al suelo. Con ese resultado, otra parte del motor escribe la explicación del tiro en la hoja de cuaderno. Hasta aquí la parte del programa; ahora mi compañero Juan Fernando les explica la física que está detrás de todo lo que acaban de ver.</aside>
+  <aside class="apoyo"><p><b>const DT = 1.0 / 240.0</b>Paso de tiempo: cada cálculo avanza 1/240 de segundo (unos 4 milisegundos).</p><p><b>loop y t = i · DT</b>loop repite el cálculo. i cuenta los pasos: en el paso 240 ya pasó 1 segundo.</p><p><b>posicion(...)</b>Calcula x e y con las fórmulas del tiro parabólico: x = x0 + v0x·t y y = y0 + v0y·t − ½·g·t².</p><p><b>toca, choca, suelo</b>Si la piedra toca una lata o un mango, se anota el golpe y sigue. Si choca con un palo o un muro, break termina. Si y ≤ 0 y va bajando, llegó al suelo y también termina. i += 1 pasa al siguiente paso.</p><p><b>¿Por qué 240 y no 60?</b>A unos 14 m/s, con 240 pasos por segundo la piedra avanza unos 6 cm por paso; con 60 avanzaría 23 cm y podría saltarse una lata pequeña sin tocarla.</p></aside>
 </section>
 
 <!-- 13 · PRUEBAS -->
